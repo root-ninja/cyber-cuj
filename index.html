@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CYBER CUJ — The official Cyber Security Club of Central University of Jammu. Fostering excellence in ethical hacking, CTF competitions, digital forensics, and cyber awareness.">
+  <meta name="keywords" content="CYBER CUJ, Central University of Jammu, Cybersecurity Club, Ethical Hacking, CTF, Penetration Testing, Digital Forensics, Jammu Kashmir">
+  <meta name="theme-color" content="#050811">
+  <title>CYBER CUJ | Cyber Security Club — Central University of Jammu</title>
+
+  <!-- Google Fonts Preconnect & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Tasteful Scanlines Overlay (Toggleable) -->
+  <div class="scanlines-overlay" aria-hidden="true"></div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- ========================================================================
+       STICKY NAVIGATION BAR
+       ======================================================================== -->
+  <header class="cyber-navbar" role="banner">
+    <div class="container nav-container">
+      <!-- Brand Logo -->
+      <a href="#hero" class="brand-logo" aria-label="CYBER CUJ Home">
+        <div class="brand-shield">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <circle cx="12" cy="11" r="3"/>
+          </svg>
+        </div>
+        <div class="brand-text-wrap">
+          <span class="brand-name" id="nav-brand-name">CYBER<span>CUJ</span></span>
+          <span class="brand-affil" id="nav-brand-affil">Central University of Jammu</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav role="navigation" aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#domains" class="nav-link">Domains</a></li>
+          <li><a href="#events" class="nav-link">Events</a></li>
+          <li><a href="#ctf" class="nav-link">CTF Arena</a></li>
+          <li><a href="#team" class="nav-link">Team</a></li>
+          <li><a href="#resources" class="nav-link">Resources</a></li>
+          <li><a href="#achievements" class="nav-link">Achievements</a></li>
+          <li><a href="#join" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Action Controls -->
+      <div class="nav-actions">
+        <!-- System Telemetry Status -->
+        <div class="status-badge" title="Network Protocol: TLS 1.3 Active">
+          <span class="status-pulse"></span>
+          <span>ONLINE // DEFCON 3</span>
+        </div>
+
+        <!-- Audio Synthesizer Toggle -->
+        <button id="audio-toggle" class="audio-toggle-btn" title="Toggle UI Sound FX" aria-label="Toggle Sound">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+        </button>
+
+        <!-- Scanline Overlay Toggle -->
+        <button id="scanlines-toggle" class="scanlines-toggle-btn" title="Toggle Scanline Filter" aria-label="Toggle CRT Scanlines">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </button>
+
+        <!-- Join Quick CTA -->
+        <a href="#join" id="nav-join-btn" class="btn btn-primary btn-sm join-club-link">Join Club</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle" aria-label="Open Navigation Menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       1. HERO SECTION
+       ======================================================================== -->
+  <section id="hero" class="hero-section">
+    <!-- Interactive Canvas Background -->
+    <canvas id="cyber-canvas"></canvas>
+
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Left Hero Column -->
+        <div class="hero-content">
+          <div class="hero-org-tag" id="hero-org-tag">
+            <span class="status-pulse"></span>
+            <span id="hero-org-text">Central University of Jammu // Cyber Division</span>
+          </div>
+
+          <h1 id="hero-title" class="hero-title">
+            <span class="glow-text">CYBER</span>
+            <span class="cyber-accent">CUJ</span>
+          </h1>
+
+          <div id="hero-subtitle" class="hero-subtitle">
+            Cyber Security Club — Central University of Jammu
+          </div>
+
+          <div id="hero-tagline" class="hero-tagline-badge">
+            &gt; Learn. Hack. Defend. _
+          </div>
+
+          <p id="hero-description" class="hero-description">
+            The premier student-driven cybersecurity research and defense initiative at Central University of Jammu. We train elite ethical hackers, dominate national CTFs, conduct vulnerability research, and build resilient cyber defense systems.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#join" class="btn btn-primary btn-lg join-club-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+              Join the Club
+            </a>
+            <a href="#events" class="btn btn-outline btn-lg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Explore Events
+            </a>
+          </div>
+
+          <!-- Quick System Telemetry -->
+          <div class="hero-telemetry">
+            <div class="telemetry-item">
+              <span class="telemetry-label">Defense Posture</span>
+              <span id="hero-defcon" class="telemetry-val green">
+                <span class="status-pulse"></span> DEFCON 3 / ACTIVE
+              </span>
+            </div>
+            <div class="telemetry-item">
+              <span class="telemetry-label">Active Nodes</span>
+              <span id="hero-nodes" class="telemetry-val cyan">450+ Operatives</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="telemetry-label">Campus Subnet</span>
+              <span id="hero-subnet" class="telemetry-val">10.32.0.0/16 CUJ</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero Column: Interactive Terminal Box -->
+        <div class="hero-terminal">
+          <div class="terminal-wrapper">
+            <!-- Terminal Titlebar -->
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="t-dot red"></span>
+                <span class="t-dot yellow"></span>
+                <span class="t-dot green"></span>
+              </div>
+              <div class="terminal-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                <span>cuj-sec@mainframe:~ (zsh)</span>
+              </div>
+              <span class="terminal-badge">LIVE RECON</span>
+            </div>
+
+            <!-- Terminal Output Stream -->
+            <div id="terminal-body" class="terminal-body">
+              <div class="terminal-line">
+                <span class="terminal-prompt">system:~$</span> Initializing CYBER CUJ Security Matrix v4.2...
+              </div>
+              <div class="terminal-line">
+                <span class="terminal-prompt">system:~$</span> Connected to Central University of Jammu Secured Gateway [TLS 1.3].
+              </div>
+              <div class="terminal-output success">
+                [+] Integrity Check: PASS (SHA-256: 8f4b2e...c18a)<br>
+                [+] Club Status: OPERATIONAL | 8 Technical Domains Online<br>
+                [+] Welcome, Cyber Operative. Type <strong>'help'</strong> or execute commands below.
+              </div>
+            </div>
+
+            <!-- Terminal Input Row -->
+            <div class="terminal-input-row" style="padding: 10px 16px; border-top: 1px solid var(--border-subtle); background: rgba(7, 12, 24, 0.95);">
+              <span class="terminal-prompt">guest@cuj:~$</span>
+              <input type="text" id="terminal-input" placeholder="type 'help', 'domains', 'events', 'flag'..." autocomplete="off" spellcheck="false" aria-label="Terminal Command Input">
+              <span class="terminal-cursor"></span>
+            </div>
+
+            <!-- Terminal Quick Action Shortcut Chips -->
+            <div class="terminal-shortcuts">
+              <span>Quick:</span>
+              <button class="term-cmd-btn" data-cmd="help">help</button>
+              <button class="term-cmd-btn" data-cmd="about">about</button>
+              <button class="term-cmd-btn" data-cmd="domains">domains</button>
+              <button class="term-cmd-btn" data-cmd="events">events</button>
+              <button class="term-cmd-btn" data-cmd="flag">flag</button>
+              <button class="term-cmd-btn" data-cmd="clear">clear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       2. ABOUT US SECTION & STATS
+       ======================================================================== -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag green">Mission &amp; Identity</div>
+        <h2 class="section-title">Forging the Next Generation of <span class="highlight">Cyber Defenders</span></h2>
+        <p class="section-desc">
+          CYBER CUJ is the official student-led cybersecurity organization of Central University of Jammu. We cultivate practical ethical hacking talent, security awareness, and vulnerability research.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <!-- About Narrative -->
+        <div class="about-text">
+          <blockquote class="about-quote">
+            "We believe true security is not achieved by erecting walls in ignorance, but by thoroughly understanding the exploit to architect impervious defenses."
+          </blockquote>
+          <p>
+            Established at the Department of Computer Science &amp; Information Technology, Central University of Jammu, CYBER CUJ provides students with real-world infrastructure to experiment, dissect vulnerabilities, and develop defensive strategies.
+          </p>
+          <p>
+            Through rigorous hands-on laboratory sessions, CTF war-games, red-vs-blue simulations, and awareness outreach across Jammu &amp; Kashmir, our members bridge academic computer science theory with industrial offensive and defensive cybersecurity practices.
+          </p>
+        </div>
+
+        <!-- 4 Club Pillars -->
+        <div class="pillars-grid">
+          <div class="pillar-item">
+            <div class="pillar-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3 class="pillar-title">Hands-on Sandbox Labs</h3>
+            <p class="pillar-desc">Isolated internal ranges and virtual machines simulating real-world enterprise infrastructure and Active Directory exploits.</p>
+          </div>
+
+          <div class="pillar-item">
+            <div class="pillar-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="pillar-title">Ethical Hacking Code</h3>
+            <p class="pillar-desc">Strict adherence to responsible disclosure frameworks, legal boundary guidelines, and academic research integrity.</p>
+          </div>
+
+          <div class="pillar-item">
+            <div class="pillar-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+            </div>
+            <h3 class="pillar-title">CTF Competitive Force</h3>
+            <p class="pillar-desc">Regular intra-university sprints and organized representation in prestigious national &amp; global CTF competitions.</p>
+          </div>
+
+          <div class="pillar-item">
+            <div class="pillar-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 class="pillar-title">Campus &amp; State Awareness</h3>
+            <p class="pillar-desc">Collaborating with state cyber cells to deliver digital literacy, fraud prevention, and device hardening workshops.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Counting Statistics Banner -->
+      <div class="stats-banner">
+        <div class="stat-box">
+          <div class="stat-number-wrap">
+            <span class="stat-number" data-target="450">0</span>
+            <span class="stat-plus">+</span>
+          </div>
+          <span class="stat-label">Active Members</span>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-number-wrap">
+            <span class="stat-number" data-target="65">0</span>
+            <span class="stat-plus">+</span>
+          </div>
+          <span class="stat-label">CTF Challenges Built</span>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-number-wrap">
+            <span class="stat-number" data-target="40">0</span>
+            <span class="stat-plus">+</span>
+          </div>
+          <span class="stat-label">Workshops &amp; Bootcamps</span>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-number-wrap">
+            <span class="stat-number" data-target="20">0</span>
+            <span class="stat-plus">+</span>
+          </div>
+          <span class="stat-label">Events Conducted</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. DOMAINS / WHAT WE DO SECTION
+       ======================================================================== -->
+  <section id="domains" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Core Disciplines</div>
+        <h2 class="section-title">Our Technical <span class="highlight">Specializations</span></h2>
+        <p class="section-desc">
+          CYBER CUJ is structured into 8 specialized operational divisions. Members receive hands-on training and conduct real-world security experiments in each domain.
+        </p>
+      </div>
+
+    
+      <div id="domains-grid" class="domains-grid">
+        <!-- 1. Ethical Hacking -->
+        <div class="domain-card">
+          <div class="domain-header">
+            <div class="domain-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-10 10c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+            </div>
+            <span class="domain-badge">DOM-01</span>
+          </div>
+          <h3 class="domain-title">Ethical Hacking</h3>
+          <p class="domain-desc">
+            Red team strategies, offensive exploit crafting, system privilege escalation, and testing security controls against advanced persistent threat (APT) tactics.
+          </p>
+          <div class="domain-tags">
+            <span class="tech-chip">Metasploit</span>
+            <span class="tech-chip">Linux PrivEsc</span>
+            <span class="tech-chip">Cobalt Strike</span>
+            <span class="tech-chip">Shellcoding</span>
+          </div>
+        </div>
+
+        <!-- 2. Penetration Testing -->
+        <div class="domain-card">
+          <div class="domain-header">
+            <div class="domain-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
+            </div>
+            <span class="domain-badge">DOM-02</span>
+          </div>
+          <h3 class="domain-title">Penetration Testing</h3>
+          <p class="domain-desc">
+            Methodical vulnerability assessments, network perimeter pivoting, Active Directory exploitation, and generating professional remediation reports.
+          </p>
+          <div class="domain-tags">
+            <span class="tech-chip">Nmap</span>
+            <span class="tech-chip">Nessus</span>
+            <span class="tech-chip">BloodHound</span>
+            <span class="tech-chip">OWASP Testing</span>
+          </div>
+        </div>
+
+        <!-- 3. Capture The Flag (CTF) -->
+        <div class="domain-card">
+          <div class="domain-header">
+            <div class="domain-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+            </div>
+            <span class="domain-badge">DOM-03</span>
+          </div>
+          <h3 class="domain-title">Capture The Flag (CTF)</h3>
+          <p class="domain-desc">
+            Designing and solving complex Jeopardy-style and Attack-Defense challenges. Fostering out-of-the-box analytical thinking under timed tournament pressure.
+          </p>
+          <div class="domain-tags">
+            <span class="tech-chip">CTFd</span>
+            <span class="tech-chip">Binary Pwn</span>
+            <span class="tech-chip">Web Exploits</span>
+            <span class="tech-chip">Speed Hacking</span>
+          </div>
+        </div>
+
+        <!-- 4. Digital Forensics -->
+        <div class="domain-card">
+          <div class="domain-header">
+            <div class="domain-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+            <span class="domain-badge">DOM-04</span>
+          </div>
+          <h3 class="domain-title">Digital Forensics &amp; IR</h3>
+          <p class="domain-desc">
+            Extracting digital evidence, analyzing volatile memory dumps, tracing malware persistence artifacts, and reconstructing cyber crime timelines.
+          </p>
+          <div class="domain-tags">
+            <span class="tech-chip">Volatility 3</span>
+            <span class="tech-chip">Autopsy</span>
+            <span class="tech-chip">FTK Imager</span>
+            <span class="tech-chip">Timeline Analysis</span>
+          </div>
+        </div>
+
+        <!-- 5. Web Security -->
+        <div class="domain-card">
+          <div class="domain-header">
+            <div class="domain-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <span class="domain-badge">DOM-05</span>
+          </div>
+          <h3 class="domain-title">Web Application Security</h3>
+          <p class="domain-desc">
+            Uncovering server-side and client-side flaws: SQL Injection, Cross-Site Scripting (XSS), SSRF, Broken Access Controls, and JWT exploitation.
+          </p>
+          <div class="domain-tags">
+            <span class="tech-chip">Burp Suite Pro</span>
+            <span class="tech-chip">OWASP Top 10</span>
+            <span class="tech-chip">SQLMap</span>
+            <span class="tech-chip">API Security</span>
+          </div>
+        </div>
+
+        <!-- 6. Network Security -->
+        <div class="domain-card">
+          <div class="domain-header">
+            <div class="domain-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            </div>
+            <span class="domain-badge">DOM-06</span>
+          </div>
+          <h3 class="domain-title">Network Security &amp; Sniffing</h3>
+          <p class="domain-desc">
+            Deep packet inspection, MITM analysis, firewall configuration, IDS/IPS rulesets, and securing campus communication architectures.
+          </p>
+          <div class="domain-tags">
+            <span class="tech-chip">Wireshark</span>
+            <span class="tech-chip">Snort IDS</span>
+            <span class="tech-chip">Zeek</span>
+            <span class="tech-chip">TCP/IP Internals</span>
+          </div>
+        </div>
+
+        <!-- 7. Cryptography -->
+        <div class="domain-card">
+          <div class="domain-header">
+            <div class="domain-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <span class="domain-badge">DOM-07</span>
+          </div>
+          <h3 class="domain-title">Applied Cryptography</h3>
+          <p class="domain-desc">
+            Analyzing symmetric &amp; asymmetric ciphers, breaking flawed crypto implementations (RSA, AES, ECC), mathematical attacks, and hash cracking.
+          </p>
+          <div class="domain-tags">
+            <span class="tech-chip">Hashcat</span>
+            <span class="tech-chip">SageMath</span>
+            <span class="tech-chip">CyberChef</span>
+            <span class="tech-chip">RSA / ECC Attacks</span>
+          </div>
+        </div>
+
+        <!-- 8. OSINT -->
+        <div class="domain-card">
+          <div class="domain-header">
+            <div class="domain-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+            <span class="domain-badge">DOM-08</span>
+          </div>
+          <h3 class="domain-title">OSINT &amp; Threat Intelligence</h3>
+          <p class="domain-desc">
+            Open-source intelligence gathering, geolocation verification, breach data analysis, dark web monitoring, and digital footprint profiling.
+          </p>
+          <div class="domain-tags">
+            <span class="tech-chip">Maltego</span>
+            <span class="tech-chip">SpiderFoot</span>
+            <span class="tech-chip">Shodan</span>
+            <span class="tech-chip">Geo-Recon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. EVENTS SECTION & MODAL VIEWER
+       ======================================================================== -->
+  <section id="events" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag green">Operations &amp; Schedule</div>
+        <h2 class="section-title">Events &amp; <span class="highlight">Competitions</span></h2>
+        <p class="section-desc">
+          Participate in our upcoming CTFs, deep-dive workshops, and seminars. Open to university students, security enthusiasts, and competitive hackers.
+        </p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="events-filters">
+        <button class="filter-btn active" data-filter="all">All Operations</button>
+        <button class="filter-btn" data-filter="ctf">CTFs &amp; Hackathons</button>
+        <button class="filter-btn" data-filter="workshop">Hands-On Workshops</button>
+        <button class="filter-btn" data-filter="seminar">Seminars</button>
+        <button class="filter-btn" data-filter="awareness">Awareness Drives</button>
+      </div>
+
+      <!-- Events Grid -->
+      <div id="events-grid" class="events-grid">
+        <!-- Event 1: Flagship CTF -->
+        <div class="event-card" data-type="ctf">
+          <div class="event-top">
+            <span class="event-type-badge">CTF Tournament</span>
+            <span class="event-status upcoming">Registration Open</span>
+          </div>
+          <h3 class="event-title">CUJ Cyber Sentinel CTF 2025</h3>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>October 14–16, 2025 (48-hr Online)</span>
+            </div>
+            <div class="event-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Online CTFd Platform &amp; CUJ Lab 3</span>
+            </div>
+          </div>
+          <p class="event-desc">
+            National Jeopardy-style CTF featuring original challenges across Web, Cryptography, Reverse Engineering, Forensics, and OSINT. Cash prizes and certificates for top teams.
+          </p>
+          <div class="event-footer">
+            <span class="mono" style="font-size: 0.8rem; color: var(--neon-cyan);">Teams: 1–4 Members</span>
+            <button class="btn btn-outline btn-sm view-event-btn" data-id="cuj-ctf-2025">View Details</button>
+          </div>
+        </div>
+
+        <!-- Event 2: Binary Exploit Workshop -->
+        <div class="event-card" data-type="workshop">
+          <div class="event-top">
+            <span class="event-type-badge">Workshop</span>
+            <span class="event-status upcoming">Upcoming</span>
+          </div>
+          <h3 class="event-title">Zero-Day Discovery &amp; Binary Exploitation</h3>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>November 05, 2025 (02:00 PM IST)</span>
+            </div>
+            <div class="event-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Seminar Hall B &amp; Live Stream</span>
+            </div>
+          </div>
+          <p class="event-desc">
+            Master the art of reverse engineering compiled x86/ARM executables with Ghidra and GDB. Learn buffer overflows, ROP chain synthesis, and shellcode execution.
+          </p>
+          <div class="event-footer">
+            <span class="mono" style="font-size: 0.8rem; color: var(--neon-cyan);">Hands-on Sandbox</span>
+            <button class="btn btn-outline btn-sm view-event-btn" data-id="zeroday-workshop">View Details</button>
+          </div>
+        </div>
+
+        <!-- Event 3: Cyber Aware JK -->
+        <div class="event-card" data-type="awareness">
+          <div class="event-top">
+            <span class="event-type-badge">Awareness Campaign</span>
+            <span class="event-status upcoming">Campus Outreach</span>
+          </div>
+          <h3 class="event-title">Cyber Aware J&amp;K: Campus Security Campaign</h3>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>November 22, 2025 (11:00 AM IST)</span>
+            </div>
+            <div class="event-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>CUJ Main University Auditorium</span>
+            </div>
+          </div>
+          <p class="event-desc">
+            Addressing social engineering attacks, real-world UPI financial fraud prevention, device security, and hygiene against malicious phishing vectors.
+          </p>
+          <div class="event-footer">
+            <span class="mono" style="font-size: 0.8rem; color: var(--neon-cyan);">All Students Welcome</span>
+            <button class="btn btn-outline btn-sm view-event-btn" data-id="cyber-awareness-jk">View Details</button>
+          </div>
+        </div>
+
+        <!-- Event 4: OSINT Seminar -->
+        <div class="event-card" data-type="seminar">
+          <div class="event-top">
+            <span class="event-type-badge">Seminar</span>
+            <span class="event-status upcoming">Virtual Stage</span>
+          </div>
+          <h3 class="event-title">Digital Footprints &amp; OSINT Investigation</h3>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>December 08, 2025 (06:00 PM IST)</span>
+            </div>
+            <div class="event-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Virtual Room &amp; Club Discord</span>
+            </div>
+          </div>
+          <p class="event-desc">
+            Learn threat intelligence reconnaissance techniques, image metadata extraction, geolocation verification, and tracing malicious infrastructure.
+          </p>
+          <div class="event-footer">
+            <span class="mono" style="font-size: 0.8rem; color: var(--neon-cyan);">Live Q&amp;A Session</span>
+            <button class="btn btn-outline btn-sm view-event-btn" data-id="osint-masterclass">View Details</button>
+          </div>
+        </div>
+
+        <!-- Event 5: Inter-University Defensive Hackathon (Past) -->
+        <div class="event-card" data-type="ctf">
+          <div class="event-top">
+            <span class="event-type-badge">Hackathon</span>
+            <span class="event-status">Completed</span>
+          </div>
+          <h3 class="event-title">Inter-University Defensive Hackathon 2025</h3>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>August 18–19, 2025 (24-hr Sprint)</span>
+            </div>
+            <div class="event-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Campus Cyber Lab 1</span>
+            </div>
+          </div>
+          <p class="event-desc">
+            Teams engineered automated incident detection scripts, custom honeypot telemetry collectors, and SIEM dashboard integrations under real APT simulations.
+          </p>
+          <div class="event-footer">
+            <span class="mono" style="font-size: 0.8rem; color: var(--text-muted);">120+ Hackers</span>
+            <button class="btn btn-outline btn-sm view-event-btn" data-id="national-hackathon-past">View Details</button>
+          </div>
+        </div>
+
+        <!-- Event 6: OWASP Top 10 Hands-On Bootcamp (Past) -->
+        <div class="event-card" data-type="workshop">
+          <div class="event-top">
+            <span class="event-type-badge">Bootcamp</span>
+            <span class="event-status">Completed</span>
+          </div>
+          <h3 class="event-title">OWASP Top 10 Hands-On Bootcamp</h3>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>July 10, 2025 (04:00 PM IST)</span>
+            </div>
+            <div class="event-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Online Cyber Sandbox</span>
+            </div>
+          </div>
+          <p class="event-desc">
+            Practical dissection of injection flaws, broken object-level authorization (BOLA/IDOR), and cross-site scripting attacks with PortSwigger Academy labs.
+          </p>
+          <div class="event-footer">
+            <span class="mono" style="font-size: 0.8rem; color: var(--text-muted);">Archived Labs</span>
+            <button class="btn btn-outline btn-sm view-event-btn" data-id="websec-bootcamp-past">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5. CTF ARENA SECTION & INTERACTIVE MINI CHALLENGE
+       ======================================================================== -->
+  <section id="ctf" class="section ctf-section">
+    <div class="container">
+      <div class="ctf-arena-card">
+        <div class="ctf-banner-grid">
+          <div>
+            <div class="section-tag green">Battlefield // Jeopardy &amp; Attack-Defense</div>
+            <h2 class="ctf-headline">Enter the <span class="highlight">CTF Arena</span></h2>
+            <p class="ctf-tagline">
+              Sharpen your offensive cyber skills in our custom-built competitive CTF platform. Solve cryptography puzzles, break web applications, inspect memory artifacts, and capture flags to climb the CUJ leaderboard.
+            </p>
+
+            <div class="ctf-stats-row">
+              <div class="ctf-mini-stat">
+                <span class="val">60+</span>
+                <span class="lbl">Custom Challenges</span>
+              </div>
+              <div class="ctf-mini-stat">
+                <span class="val">1,200+</span>
+                <span class="lbl">Total Flag Solves</span>
+              </div>
+              <div class="ctf-mini-stat">
+                <span class="val">24/7</span>
+                <span class="lbl">Arena Uptime</span>
+              </div>
+            </div>
+
+            <a href="#mini-ctf-box" class="btn btn-cyan btn-lg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Enter the Arena
+            </a>
+          </div>
+
+          <!-- CTF Arena Holographic Emblem -->
+          <div style="text-align: center;">
+            <div style="display: inline-block; padding: 24px; border: 1px solid var(--border-neon-cyan); border-radius: 20px; background: rgba(0, 229, 255, 0.03); box-shadow: 0 0 35px rgba(0, 229, 255, 0.15);">
+              <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="color: var(--neon-cyan); filter: drop-shadow(0 0 10px var(--neon-cyan));">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+              <div class="mono" style="margin-top: 14px; font-size: 0.84rem; color: var(--neon-green); letter-spacing: 0.1em;">
+                FLAG VALIDATOR ONLINE
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTF Categories Grid -->
+      <div class="ctf-categories-grid">
+        <div class="ctf-cat-card">
+          <div class="ctf-cat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+          </div>
+          <div class="ctf-cat-name">Web Exploitation</div>
+          <div class="ctf-cat-count">18 Challenges</div>
+        </div>
+
+        <div class="ctf-cat-card">
+          <div class="ctf-cat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="ctf-cat-name">Cryptography</div>
+          <div class="ctf-cat-count">14 Challenges</div>
+        </div>
+
+        <div class="ctf-cat-card">
+          <div class="ctf-cat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <div class="ctf-cat-name">Digital Forensics</div>
+          <div class="ctf-cat-count">12 Challenges</div>
+        </div>
+
+        <div class="ctf-cat-card">
+          <div class="ctf-cat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/></svg>
+          </div>
+          <div class="ctf-cat-name">OSINT</div>
+          <div class="ctf-cat-count">10 Challenges</div>
+        </div>
+
+        <div class="ctf-cat-card">
+          <div class="ctf-cat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div class="ctf-cat-name">Reverse Eng</div>
+          <div class="ctf-cat-count">8 Challenges</div>
+        </div>
+
+        <div class="ctf-cat-card">
+          <div class="ctf-cat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/></svg>
+          </div>
+          <div class="ctf-cat-name">Binary Pwn</div>
+          <div class="ctf-cat-count">8 Challenges</div>
+        </div>
+      </div>
+
+      <!-- Interactive Mini CTF Challenge Box -->
+      <div id="mini-ctf-box" class="mini-challenge-box">
+        <div class="challenge-header">
+          <div class="status-pulse"></div>
+          <h3 class="challenge-title">Live CTF Warmup: <span style="color: var(--neon-cyan);">Intercepted Packet Stream [Crypto 101]</span></h3>
+        </div>
+
+        <p style="font-size: 0.94rem; margin-bottom: 14px; color: var(--text-secondary);">
+          Our campus honeypot caught an encoded transmission from an unauthorized terminal trying to breach the CUJ security perimeter. Decode the ciphertext below to extract the access flag:
+        </p>
+
+        <div class="challenge-clue-box">
+          <div class="label">// Intercepted Transmission Payload</div>
+          <div style="font-weight: bold; font-size: 1.05rem; letter-spacing: 0.05em; color: #67e8f9;">
+            Q1VKe3czbGMwbTNfdDBfY3VqX2N5YjNyXzRyM240fQ==
+          </div>
+          <div id="challenge-hint" style="display: none; margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(0, 229, 255, 0.2); font-size: 0.8rem; color: var(--accent-amber);">
+            [HINT] Looks like standard Base64 encoding. You can use CyberChef, a python script (<code>import base64</code>), or Linux command: <code>echo "..." | base64 -d</code>!
+          </div>
+        </div>
+
+        <!-- Flag Submission Form -->
+        <form id="mini-ctf-form" class="flag-form">
+          <input type="text" id="flag-input" class="flag-input" placeholder="Enter flag: CUJ{...}" autocomplete="off" spellcheck="false" aria-label="Flag Submission Input">
+          <button type="submit" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Submit Flag
+          </button>
+          <button type="button" id="toggle-hint-btn" class="btn btn-outline btn-sm">Decrypt Hint [+]</button>
+        </form>
+
+        <div id="flag-feedback" class="flag-feedback" aria-live="assertive"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       6. TEAM SECTION
+       ======================================================================== -->
+  <section id="team" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Cyber Squad</div>
+        <h2 class="section-title">Core Leadership &amp; <span class="highlight">Advisors</span></h2>
+        <p class="section-desc">
+          Guided by esteemed faculty and driven by passionate student security researchers at Central University of Jammu.
+        </p>
+      </div>
+
+      <!-- Faculty Advisory -->
+      <div class="team-role-heading">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        <span>Faculty Advisory</span>
+      </div>
+
+      <div id="team-faculty-grid" class="team-grid">
+        <!-- Faculty Advisor Card -->
+        <div class="team-card">
+          <div class="member-avatar-wrap">
+            <div class="member-avatar">
+              <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span class="member-status-indicator" title="Status: Online"></span>
+          </div>
+          <h3 class="member-name">Dr. Faculty Advisor</h3>
+          <div class="member-role">Faculty Mentor &amp; Research Advisor</div>
+          <p class="member-spec">
+            Assistant Professor, Department of Computer Science &amp; IT, Central University of Jammu. Specialist in Cryptographic Protocols, Network Security, and Cloud Architecture.
+          </p>
+          <div class="member-socials">
+            <a href="mailto:advisor@cuj.ac.in" class="member-social-link" title="Official Email" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="member-social-link" title="LinkedIn Profile" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="https://cuj.ac.in" target="_blank" rel="noopener noreferrer" class="member-social-link" title="University Profile" aria-label="University Profile"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Student Core Team -->
+      <div class="team-role-heading">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        <span>Student Core Leads (Easy To Update)</span>
+      </div>
+
+      <div id="team-leads-grid" class="team-grid">
+        <!-- Lead 1: Club President / Lead Coordinator -->
+        <div class="team-card">
+          <div class="member-avatar-wrap">
+            <div class="member-avatar">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span class="member-status-indicator"></span>
+          </div>
+          <h3 class="member-name">Club Lead Coordinator</h3>
+          <div class="member-role">President &amp; Offensive Security Lead</div>
+          <p class="member-spec">
+            Final Year B.Tech / M.Tech CSE. Penetration testing enthusiast, CTF player, and infrastructure lead for CYBER CUJ lab sandboxes.
+          </p>
+          <div class="member-socials">
+            <a href="https://github.com" target="_blank" rel="noopener" class="member-social-link" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="member-social-link" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="member-social-link" aria-label="X / Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Lead 2: CTF & Forensics Lead -->
+        <div class="team-card">
+          <div class="member-avatar-wrap">
+            <div class="member-avatar">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span class="member-status-indicator"></span>
+          </div>
+          <h3 class="member-name">Vice President &amp; CTF Lead</h3>
+          <div class="member-role">Forensics &amp; Incident Response</div>
+          <p class="member-spec">
+            3rd Year Computer Science. Memory forensics researcher with expertise in Volatility 3, Autopsy, and author of 20+ university CTF challenges.
+          </p>
+          <div class="member-socials">
+            <a href="https://github.com" target="_blank" rel="noopener" class="member-social-link" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="member-social-link" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="member-social-link" aria-label="X / Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Lead 3: Web Security & Cryptography Lead -->
+        <div class="team-card">
+          <div class="member-avatar-wrap">
+            <div class="member-avatar">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span class="member-status-indicator"></span>
+          </div>
+          <h3 class="member-name">Web Sec &amp; Cryptography Lead</h3>
+          <div class="member-role">Bug Bounty Hunter &amp; Cryptanalyst</div>
+          <p class="member-spec">
+            3rd Year IT. Active bug bounty hunter with Hall of Fame listings in major web assets, focusing on modern OAuth, JWT, and SSRF flaws.
+          </p>
+          <div class="member-socials">
+            <a href="https://github.com" target="_blank" rel="noopener" class="member-social-link" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="member-social-link" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="member-social-link" aria-label="X / Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Lead 4: Community & Awareness Lead -->
+        <div class="team-card">
+          <div class="member-avatar-wrap">
+            <div class="member-avatar">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span class="member-status-indicator"></span>
+          </div>
+          <h3 class="member-name">Outreach &amp; Events Lead</h3>
+          <div class="member-role">Community Manager &amp; OSINT Lead</div>
+          <p class="member-spec">
+            2nd Year CSE. Coordinates inter-college partnerships, state cyber awareness workshops, and spearheads open-source intelligence research.
+          </p>
+          <div class="member-socials">
+            <a href="https://github.com" target="_blank" rel="noopener" class="member-social-link" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="member-social-link" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="member-social-link" aria-label="X / Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. RESOURCES SECTION
+       ======================================================================== -->
+  <section id="resources" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag green">Cyber Knowledge Base</div>
+        <h2 class="section-title">Curated Learning <span class="highlight">Resources</span></h2>
+        <p class="section-desc">
+          Structured roadmaps, handbooks, cheat sheets, and practice platforms vetted by CYBER CUJ leads for members to accelerate their offensive and defensive skills.
+        </p>
+      </div>
+
+      <!-- Search Controls -->
+      <div class="resource-controls">
+        <div class="resource-search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="resource-search" class="resource-search-input" placeholder="Search resources (e.g., Linux, CTF, Forensics, Burp)..." aria-label="Search resources">
+        </div>
+        <div class="mono" style="font-size: 0.82rem; color: var(--text-muted);">
+          Filtered dynamically // 7 core domains
+        </div>
+      </div>
+
+      <!-- Resources Grid -->
+      <div id="resources-grid" class="resources-grid">
+        <!-- Linux Card -->
+        <div class="resource-card">
+          <div class="res-header">
+            <span class="res-cat-tag">Linux &amp; CLI</span>
+            <span class="mono" style="font-size: 0.72rem; color: var(--text-muted);">Foundational</span>
+          </div>
+          <h3 class="res-title">OverTheWire: Bandit Wargame</h3>
+          <p class="res-desc">
+            Essential beginner wargame teaching core Linux command-line manipulation, SSH keys, file permissions, cronjobs, and basic shell navigation.
+          </p>
+          <a href="https://overthewire.org/wargames/bandit/" target="_blank" rel="noopener noreferrer" class="res-link">
+            Access Roadmap <span>&rarr;</span>
+          </a>
+        </div>
+
+        <!-- Networking Card -->
+        <div class="resource-card">
+          <div class="res-header">
+            <span class="res-cat-tag">Networking</span>
+            <span class="mono" style="font-size: 0.72rem; color: var(--text-muted);">Packet Analysis</span>
+          </div>
+          <h3 class="res-title">Wireshark Sample Captures &amp; Filters</h3>
+          <p class="res-desc">
+            Comprehensive PCAP repository and display filter cheat sheet for inspecting TCP handshakes, DNS anomalies, ARP poisoning, and TLS flows.
+          </p>
+          <a href="https://wiki.wireshark.org/SampleCaptures" target="_blank" rel="noopener noreferrer" class="res-link">
+            Access Cheat Sheet <span>&rarr;</span>
+          </a>
+        </div>
+
+        <!-- Web Security Card -->
+        <div class="resource-card">
+          <div class="res-header">
+            <span class="res-cat-tag">Web Security</span>
+            <span class="mono" style="font-size: 0.72rem; color: var(--text-muted);">Offensive Web</span>
+          </div>
+          <h3 class="res-title">PortSwigger Web Security Academy</h3>
+          <p class="res-desc">
+            The industry standard free interactive training laboratory covering SQL injection, XSS, CSRF, server-side request forgery, and authentication bypasses.
+          </p>
+          <a href="https://portswigger.net/web-security" target="_blank" rel="noopener noreferrer" class="res-link">
+            Launch Labs <span>&rarr;</span>
+          </a>
+        </div>
+
+        <!-- Ethical Hacking Card -->
+        <div class="resource-card">
+          <div class="res-header">
+            <span class="res-cat-tag">Ethical Hacking</span>
+            <span class="mono" style="font-size: 0.72rem; color: var(--text-muted);">PrivEsc &amp; Red Team</span>
+          </div>
+          <h3 class="res-title">PayloadsAllTheThings &amp; GTFOBins</h3>
+          <p class="res-desc">
+            Master cheat sheets for privilege escalation binaries on Unix systems, bypass techniques, reverse shell payloads, and penetration testing commands.
+          </p>
+          <a href="https://gtfobins.github.io/" target="_blank" rel="noopener noreferrer" class="res-link">
+            View Payloads <span>&rarr;</span>
+          </a>
+        </div>
+
+        <!-- Cryptography Card -->
+        <div class="resource-card">
+          <div class="res-header">
+            <span class="res-cat-tag">Cryptography</span>
+            <span class="mono" style="font-size: 0.72rem; color: var(--text-muted);">Cryptanalysis</span>
+          </div>
+          <h3 class="res-title">CryptoHack Platform &amp; CyberChef</h3>
+          <p class="res-desc">
+            Fun, interactive platform to break modern and classical ciphers including RSA, modular arithmetic, AES Galois modes, and Elliptic Curves.
+          </p>
+          <a href="https://cryptohack.org/" target="_blank" rel="noopener noreferrer" class="res-link">
+            Explore CryptoHack <span>&rarr;</span>
+          </a>
+        </div>
+
+        <!-- Forensics Card -->
+        <div class="resource-card">
+          <div class="res-header">
+            <span class="res-cat-tag">Digital Forensics</span>
+            <span class="mono" style="font-size: 0.72rem; color: var(--text-muted);">Incident Response</span>
+          </div>
+          <h3 class="res-title">Volatility Foundation Memory Analysis</h3>
+          <p class="res-desc">
+            Official guides and plugins for volatile RAM inspection. Extract active network connections, process injection DLLs, and dumped Windows SAM hashes.
+          </p>
+          <a href="https://github.com/volatilityfoundation/volatility3" target="_blank" rel="noopener noreferrer" class="res-link">
+            Read Documentation <span>&rarr;</span>
+          </a>
+        </div>
+
+        <!-- CTF Practice Card -->
+        <div class="resource-card">
+          <div class="res-header">
+            <span class="res-cat-tag">CTF Practice</span>
+            <span class="mono" style="font-size: 0.72rem; color: var(--text-muted);">Arena Drills</span>
+          </div>
+          <h3 class="res-title">picoCTF &amp; CTFtime Event Calendar</h3>
+          <p class="res-desc">
+            The beginner-friendly competitive platform picoCTF plus global rankings and upcoming tournament schedules tracked on CTFtime.
+          </p>
+          <a href="https://picoctf.org/" target="_blank" rel="noopener noreferrer" class="res-link">
+            Start Practicing <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <div id="resources-empty" style="display: none; text-align: center; padding: 40px; color: var(--text-muted); font-family: var(--font-mono);">
+        [!] No cyber resources matched your filter query. Try searching for "Linux", "Web", "CTF", or "Crypto".
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       8. ACHIEVEMENTS SECTION
+       ======================================================================== -->
+  <section id="achievements" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag green">Hall of Fame</div>
+        <h2 class="section-title">Club Achievements &amp; <span class="highlight">Accolades</span></h2>
+        <p class="section-desc">
+          Honoring milestones, national competition rankings, security research advisories, and certifications earned by CYBER CUJ members.
+        </p>
+      </div>
+
+      <div id="achieve-grid" class="achieve-grid">
+        <!-- Achievement 1 -->
+        <div class="achieve-card">
+          <div class="achieve-icon-badge">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          </div>
+          <div class="achieve-content">
+            <div class="achieve-year">2025 // TOURNAMENT</div>
+            <h3 class="achieve-title">Top 10 National CTF Finishes</h3>
+            <p class="achieve-desc">
+              CYBER CUJ team secured Rank #7 out of 340+ university teams across India in the National Inter-University Cyber Challenge.
+            </p>
+          </div>
+        </div>
+
+        <!-- Achievement 2 -->
+        <div class="achieve-card">
+          <div class="achieve-icon-badge">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="achieve-content">
+            <div class="achieve-year">2025 // STATE RECOGNITION</div>
+            <h3 class="achieve-title">Special Commendation: State Cyber Cell</h3>
+            <p class="achieve-desc">
+              Recognized by Jammu &amp; Kashmir Cyber Police for student-led digital safety outreach, educating 2,000+ citizens against phishing and UPI fraud.
+            </p>
+          </div>
+        </div>
+
+        <!-- Achievement 3 -->
+        <div class="achieve-card">
+          <div class="achieve-icon-badge">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <div class="achieve-content">
+            <div class="achieve-year">2024–2025 // CERTIFICATIONS</div>
+            <h3 class="achieve-title">15+ Professional Certifications</h3>
+            <p class="achieve-desc">
+              Active club members successfully certified in CompTIA Security+, Certified Ethical Hacker (CEH), eJPT, and OSCP through club mentorship cohorts.
+            </p>
+          </div>
+        </div>
+
+        <!-- Achievement 4 -->
+        <div class="achieve-card">
+          <div class="achieve-icon-badge">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="achieve-content">
+            <div class="achieve-year">2024 // HACKATHON</div>
+            <h3 class="achieve-title">1st Place: Northern Hack-Defense 2024</h3>
+            <p class="achieve-desc">
+              Designed an open-source real-time DNS exfiltration detection agent, awarded 1st place and Best Innovation Trophy at Northern Regional Tech Fest.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       9. JOIN US / RECRUITMENT & FAQ SECTION
+       ======================================================================== -->
+  <section id="join" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Recruitment &amp; Contact</div>
+        <h2 class="section-title">Ready to Enter the World of <span class="highlight">Cybersecurity?</span></h2>
+        <p class="section-desc">
+          Whether you are an aspiring ethical hacker, a network enthusiast, or curious about digital forensics, CYBER CUJ is where your journey starts.
+        </p>
+      </div>
+
+      <div class="join-grid">
+        <!-- Interactive Registration Form -->
+        <div class="join-form-box">
+          <h3 class="form-title">Join CYBER CUJ</h3>
+          <p class="form-subtitle">Register your interest for our upcoming orientation and recruitment cycle.</p>
+
+          <form id="join-form" class="cyber-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="reg-name">Full Name *</label>
+                <input type="text" id="reg-name" class="form-control" placeholder="e.g. Aryan Sharma" required>
+              </div>
+              <div class="form-group">
+                <label for="reg-email">Student / Personal Email *</label>
+                <input type="email" id="reg-email" class="form-control" placeholder="name@cuj.ac.in" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="reg-roll">Roll No / Student ID *</label>
+                <input type="text" id="reg-roll" class="form-control" placeholder="e.g. CUJ2023CSE042" required>
+              </div>
+              <div class="form-group">
+                <label for="reg-dept">Department &amp; Year *</label>
+                <select id="reg-dept" class="form-control" required>
+                  <option value="" disabled selected>Select Department</option>
+                  <option value="CSE-1">Computer Science &amp; IT (1st Year)</option>
+                  <option value="CSE-2">Computer Science &amp; IT (2nd Year)</option>
+                  <option value="CSE-3">Computer Science &amp; IT (3rd Year)</option>
+                  <option value="CSE-4">Computer Science &amp; IT (4th Year)</option>
+                  <option value="PG-CS">M.Tech / MCA / M.Sc CS</option>
+                  <option value="OTHER">Other CUJ Department</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="reg-domain">Primary Domain of Interest *</label>
+              <select id="reg-domain" class="form-control" required>
+                <option value="" disabled selected>Choose your primary focus area</option>
+                <option value="Ethical Hacking">Ethical Hacking &amp; Penetration Testing</option>
+                <option value="CTF Arena">Competitive CTF &amp; Wargames</option>
+                <option value="Digital Forensics">Digital Forensics &amp; Incident Response</option>
+                <option value="Web Security">Web &amp; API Security</option>
+                <option value="Network Security">Network Defense &amp; Traffic Analysis</option>
+                <option value="Cryptography">Cryptography &amp; Cryptanalysis</option>
+                <option value="OSINT">OSINT &amp; Threat Intelligence</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="reg-experience">Current Experience Level</label>
+              <select id="reg-experience" class="form-control">
+                <option value="Beginner">Beginner (Eager to learn fundamentals)</option>
+                <option value="Intermediate">Intermediate (Used Linux, done TryHackMe/OverTheWire)</option>
+                <option value="Advanced">Advanced (Active CTF player, bug hunter, developer)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="reg-message">What excites you about CYBER CUJ? (Optional)</label>
+              <textarea id="reg-message" class="form-control" placeholder="Tell us about tools you love, projects, or what you wish to build with us..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Submit Membership Application
+            </button>
+          </form>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div class="faq-wrap">
+          <div class="section-tag green" style="margin-bottom: 20px;">Frequently Asked Questions</div>
+          <div class="faq-list">
+            <!-- FAQ 1 -->
+            <div class="faq-item active">
+              <button class="faq-question">
+                <span>Who is eligible to join CYBER CUJ?</span>
+                <span class="faq-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer">
+                Any bona fide student enrolled at Central University of Jammu across any academic stream (B.Tech, M.Tech, MCA, M.Sc, etc.) with curiosity and dedication to learning cybersecurity can apply.
+              </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Do I need prior coding or hacking experience?</span>
+                <span class="faq-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer">
+                No! We offer a specialized "Cyber Foundations" onboarding track for freshmen covering basic Linux command line, networking concepts, and ethical boundaries from ground zero.
+              </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>How often are club sessions and workshops held?</span>
+                <span class="faq-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer">
+                We organize weekly hands-on laboratory workshops on Friday afternoons and weekend virtual CTF sprint sessions. Timings are scheduled around university academic calendars.
+              </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>What equipment or software do I need to bring?</span>
+                <span class="faq-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer">
+                A standard laptop capable of running a modern web browser and virtualization software (VirtualBox or VMware) with Kali Linux or Ubuntu is recommended. Campus lab computers are also provided during offline sessions.
+              </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>How are university CTF teams selected?</span>
+                <span class="faq-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer">
+                Teams are formed through intra-club qualifier challenges on the CYBER CUJ arena. Active contributors, consistent solve counts, and writeups qualify members to represent Central University of Jammu in national championships.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       10. FOOTER
+       ======================================================================== -->
+  <footer class="cyber-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Col 1: Brand & Affiliation -->
+        <div>
+          <div class="brand-logo">
+            <div class="brand-shield">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <circle cx="12" cy="11" r="3"/>
+              </svg>
+            </div>
+            <div class="brand-text-wrap">
+              <span class="brand-name" id="footer-brand-name">CYBER<span>CUJ</span></span>
+              <span class="brand-affil" id="footer-brand-affil">Central University of Jammu</span>
+            </div>
+          </div>
+
+          <p class="footer-desc" id="footer-desc">
+            The official cybersecurity student organization of Central University of Jammu. Dedicated to technical excellence, ethical hacking, competitive CTFs, and defensive innovation.
+          </p>
+
+          <div class="footer-affil-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color: var(--neon-cyan);">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+            <div style="font-size: 0.8rem; line-height: 1.4;">
+              <strong id="footer-affil-org">Central University of Jammu</strong><br>
+              <span id="footer-campus-address-box" style="color: var(--text-muted);">Rahya-Suchani (Bagla), District Samba, J&amp;K - 181143</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation Links -->
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#hero" class="footer-link">Home</a></li>
+            <li><a href="#about" class="footer-link">About Us</a></li>
+            <li><a href="#domains" class="footer-link">Technical Domains</a></li>
+            <li><a href="#events" class="footer-link">Events &amp; Workshops</a></li>
+            <li><a href="#ctf" class="footer-link">CTF Arena</a></li>
+            <li><a href="#team" class="footer-link">Core Leadership</a></li>
+            <li><a href="#resources" class="footer-link">Resources Hub</a></li>
+            <li><a href="#achievements" class="footer-link">Achievements</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Domains -->
+        <div>
+          <h4 class="footer-col-title">Focus Areas</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#domains" class="footer-link">Ethical Hacking</a></li>
+            <li><a href="#domains" class="footer-link">Penetration Testing</a></li>
+            <li><a href="#domains" class="footer-link">Capture The Flag (CTF)</a></li>
+            <li><a href="#domains" class="footer-link">Digital Forensics</a></li>
+            <li><a href="#domains" class="footer-link">Web Application Security</a></li>
+            <li><a href="#domains" class="footer-link">Network Security</a></li>
+            <li><a href="#domains" class="footer-link">Applied Cryptography</a></li>
+            <li><a href="#domains" class="footer-link">Threat Intelligence (OSINT)</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact & Socials -->
+        <div>
+          <h4 class="footer-col-title">Communication</h4>
+          <div class="footer-contact-info">
+            <div class="footer-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span id="footer-contact-email">cyberclub@cuj.ac.in</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span id="footer-campus-address">Cyber Lab 3, Department of CS&amp;IT, CUJ Campus, Samba, J&amp;K</span>
+            </div>
+          </div>
+
+          <div class="footer-social-row">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="CYBER CUJ GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="CYBER CUJ LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="CYBER CUJ Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="CYBER CUJ Discord">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6h0a14.5 14.5 0 0 0-4-1.2 12.3 12.3 0 0 0-.6 1.2 13.9 13.9 0 0 0-2.8 0 12.3 12.3 0 0 0-.6-1.2A14.5 14.5 0 0 0 6 6a16.8 16.8 0 0 0-2.8 10.7 14.7 14.7 0 0 0 4.5 2.3 11.2 11.2 0 0 0 1-1.6 9.6 9.6 0 0 1-1.5-.7c.1-.1.3-.2.4-.3a10.5 10.5 0 0 0 8.8 0c.1.1.3.2.4.3a9.6 9.6 0 0 1-1.5.7 11.2 11.2 0 0 0 1 1.6 14.7 14.7 0 0 0 4.5-2.3A16.8 16.8 0 0 0 18 6zM8.5 14c-.8 0-1.5-.7-1.5-1.5S7.7 11 8.5 11s1.5.7 1.5 1.5S9.3 14 8.5 14zm7 0c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Strip -->
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 CYBER CUJ — Central University of Jammu. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       EVENT DETAIL MODAL
+       ======================================================================== -->
+  <div id="event-modal" class="cyber-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <button id="modal-close-btn" class="modal-close-btn" aria-label="Close details modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <div style="margin-bottom: 16px;">
+        <span id="modal-badge" class="section-tag" style="margin-bottom: 8px;">OPERATION BRIEFING</span>
+        <h3 id="modal-title" style="font-size: 1.45rem; color: #ffffff; margin-top: 8px;">Event Title</h3>
+      </div>
+
+      <div class="event-modal-meta-grid">
+        <div>
+          <span style="color: var(--text-muted); display: block;">DATE &amp; TIME</span>
+          <span id="modal-date" style="color: var(--neon-cyan); font-weight: 600;"></span><br>
+          <span id="modal-time" style="color: var(--text-secondary);"></span>
+        </div>
+        <div>
+          <span style="color: var(--text-muted); display: block;">LOCATION / PLATFORM</span>
+          <span id="modal-venue" style="color: var(--neon-green); font-weight: 600;"></span>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 18px;">
+        <h4 style="font-size: 0.95rem; color: #ffffff; margin-bottom: 6px; font-family: var(--font-mono);">// DESCRIPTION</h4>
+        <p id="modal-desc" style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;"></p>
+      </div>
+
+      <div style="margin-bottom: 18px;">
+        <h4 style="font-size: 0.95rem; color: #ffffff; margin-bottom: 6px; font-family: var(--font-mono);">// SPEAKERS &amp; FACULTY</h4>
+        <p id="modal-speakers" style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;"></p>
+      </div>
+
+      <div style="margin-bottom: 18px;">
+        <h4 style="font-size: 0.95rem; color: #ffffff; margin-bottom: 6px; font-family: var(--font-mono);">// PREREQUISITES</h4>
+        <p id="modal-prereq" style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;"></p>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <h4 style="font-size: 0.95rem; color: #ffffff; margin-bottom: 6px; font-family: var(--font-mono);">// OPERATION TIMELINE &amp; AGENDA</h4>
+        <p id="modal-agenda" style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;"></p>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 12px;">
+        <a href="#join" class="btn btn-primary btn-sm" onclick="document.getElementById('event-modal').classList.remove('active'); document.body.style.overflow='';">
+          Register for Event
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <button id="back-to-top" class="back-to-top" title="Back to Top" aria-label="Scroll back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- JavaScript Modules -->
+  <script src="js/site-data.js"></script>
+  <script src="js/ctf-engine.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
