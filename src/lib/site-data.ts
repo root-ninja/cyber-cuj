@@ -270,7 +270,7 @@ export const DEFAULT_SITE_DATA: SiteData = {
       prerequisites: 'Open to all university students across India. Teams of 1–4 members.',
       agenda:
         'Kickoff & Keynote: Day 1 10:00 AM | Mid-way Hint Releases: Day 2 12:00 PM | Flag freeze & Prize distribution: Day 3 4:00 PM.'
-    },
+    }
 
   ],
 
@@ -314,32 +314,7 @@ export const DEFAULT_SITE_DATA: SiteData = {
       github: 'https://github.com',
       twitter: 'https://twitter.com'
     },
-    {
-      id: 'lead-3',
-      category: 'student',
-      name: 'Web Sec & Cryptography Lead',
-      role: 'Bug Bounty Hunter & Cryptanalyst',
-      spec: '3rd Year IT. Active bug bounty hunter with Hall of Fame listings in major web assets, focusing on modern OAuth, JWT, and SSRF flaws.',
-      avatar: '',
-      email: 'websec@cuj.ac.in',
-      linkedin: 'https://linkedin.com',
-      website: '',
-      github: 'https://github.com',
-      twitter: 'https://twitter.com'
-    },
-    {
-      id: 'lead-4',
-      category: 'student',
-      name: 'Outreach & Events Lead',
-      role: 'Community Manager & OSINT Lead',
-      spec: '2nd Year CSE. Coordinates inter-college partnerships, state cyber awareness workshops, and spearheads open-source intelligence research.',
-      avatar: '',
-      email: 'outreach@cuj.ac.in',
-      linkedin: 'https://linkedin.com',
-      website: '',
-      github: 'https://github.com',
-      twitter: 'https://twitter.com'
-    }
+
   ],
 
   ctfConfig: {
