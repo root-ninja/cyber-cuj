@@ -157,7 +157,7 @@ export default function HomePage() {
   const filteredEvents = (data.events || []).filter((ev) => {
     if (eventFilter === 'all') return true;
     if (eventFilter === 'upcoming') return ev.status.toLowerCase() === 'upcoming';
-    if (eventFilter === 'completed') return ev.status.toLowerCase() === 'completed';
+    if (eventFilter === 'completed' || eventFilter === 'closed') return ev.status.toLowerCase() === 'completed' || ev.status.toLowerCase() === 'closed';
     return ev.type.toLowerCase() === eventFilter.toLowerCase();
   });
 
@@ -464,43 +464,73 @@ export default function HomePage() {
             </div>
 
             <div className="events-grid">
-              {filteredEvents.map((ev) => (
-                <div key={ev.id} className="event-card">
-                  <div className="event-status-strip">
-                    <span className={`event-badge ${ev.status.toLowerCase()}`}>
-                      <span className="status-pulse"></span> {ev.status.toUpperCase()}
-                    </span>
-                    <span className="event-type-tag">{ev.type.toUpperCase()}</span>
-                  </div>
-                  <h3 className="event-title">{ev.title}</h3>
-                  <div className="event-meta">
-                    <div className="event-meta-item">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
-                      <span>{ev.date}</span>
+              {filteredEvents.length > 0 ? (
+                filteredEvents.map((ev) => (
+                  <div key={ev.id} className="event-card">
+                    <div className="event-status-strip">
+                      <span className={`event-badge ${ev.status.toLowerCase()}`}>
+                        <span className="status-pulse"></span> {ev.status.toUpperCase()}
+                      </span>
+                      <span className="event-type-tag">{ev.type.toUpperCase()}</span>
                     </div>
-                    <div className="event-meta-item">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
-                      <span>{ev.venue}</span>
+                    <h3 className="event-title">{ev.title}</h3>
+                    <div className="event-meta">
+                      <div className="event-meta-item">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+                        <span>{ev.date}</span>
+                      </div>
+                      <div className="event-meta-item">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                        <span>{ev.venue}</span>
+                      </div>
+                    </div>
+                    <p className="event-desc">{ev.description}</p>
+                    <div className="event-actions">
+                      <button
+                        type="button"
+                        className="btn btn-outline btn-sm"
+                        onClick={() => {
+                          setSelectedEvent(ev);
+                          getCyberAudio().playBlip(700, 0.04);
+                        }}
+                      >
+                        View Details
+                      </button>
+                      <span className="mono" style={{ fontSize: '0.8rem', color: 'var(--neon-cyan)' }}>
+                        {ev.time}
+                      </span>
                     </div>
                   </div>
-                  <p className="event-desc">{ev.description}</p>
-                  <div className="event-actions">
-                    <button
-                      type="button"
-                      className="btn btn-outline btn-sm"
-                      onClick={() => {
-                        setSelectedEvent(ev);
-                        getCyberAudio().playBlip(700, 0.04);
-                      }}
-                    >
-                      View Details
-                    </button>
-                    <span className="mono" style={{ fontSize: '0.8rem', color: 'var(--neon-cyan)' }}>
-                      {ev.time}
-                    </span>
+                ))
+              ) : (
+                <div
+                  style={{
+                    gridColumn: '1 / -1',
+                    textAlign: 'center',
+                    padding: '44px 24px',
+                    border: '1px dashed rgba(0, 229, 255, 0.3)',
+                    borderRadius: 'var(--radius-md)',
+                    background: 'linear-gradient(180deg, rgba(0, 229, 255, 0.04) 0%, rgba(5, 8, 17, 0.7) 100%)',
+                    fontFamily: 'var(--font-mono)',
+                    maxWidth: '680px',
+                    margin: '0 auto',
+                    width: '100%'
+                  }}
+                >
+                  <div style={{ color: 'var(--accent-cyan)', fontSize: '1.8rem', marginBottom: 12 }}>
+                    ⚡
+                  </div>
+                  <div style={{ color: '#fff', fontSize: '1.05rem', fontWeight: 600, letterSpacing: '0.04em', marginBottom: 8 }}>
+                    [ OPERATIONS NOTICE // SCHEDULE ]
+                  </div>
+                  <div style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: 1.6 }}>
+                    Club events, CTFs, and hackathon schedules are currently being planned for 2026.
+                  </div>
+                  <div style={{ color: 'var(--accent-cyan)', fontSize: '0.78rem', marginTop: 12, opacity: 0.85 }}>
+                    // UPCOMING OPERATIONS WILL BE BROADCAST HERE
                   </div>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </section>
@@ -554,9 +584,19 @@ export default function HomePage() {
                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
                         </a>
                       )}
+                      {tm.github && (
+                        <a href={tm.github} target="_blank" rel="noopener noreferrer" className="member-social-link" title="GitHub">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" /></svg>
+                        </a>
+                      )}
                       {tm.linkedin && (
                         <a href={tm.linkedin} target="_blank" rel="noopener noreferrer" className="member-social-link" title="LinkedIn">
                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
+                        </a>
+                      )}
+                      {tm.twitter && (
+                        <a href={tm.twitter} target="_blank" rel="noopener noreferrer" className="member-social-link" title="Twitter / X">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" /></svg>
                         </a>
                       )}
                       {tm.website && (
@@ -569,7 +609,70 @@ export default function HomePage() {
                 ))}
             </div>
 
-            
+            {/* Student Core Leads */}
+            {(data.team || []).some((m) => m.category === 'student') && (
+              <>
+                <div className="team-role-heading" style={{ marginTop: '3rem' }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                  </svg>
+                  <span>Student Core Leads</span>
+                </div>
+
+                <div className="team-grid">
+                  {(data.team || [])
+                    .filter((m) => m.category === 'student')
+                    .map((tm) => (
+                      <div key={tm.id} className="team-card">
+                        <div className="member-avatar-wrap">
+                          <div className="member-avatar">
+                            {tm.avatar ? (
+                              <img src={tm.avatar} alt={tm.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            ) : (
+                              <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                              </svg>
+                            )}
+                          </div>
+                          <span className="member-status-indicator" title="Status: Online"></span>
+                        </div>
+                        <h3 className="member-name">{tm.name}</h3>
+                        <div className="member-role">{tm.role}</div>
+                        <p className="member-spec">{tm.spec}</p>
+                        <div className="member-socials">
+                          {tm.email && (
+                            <a href={`mailto:${tm.email}`} className="member-social-link" title="Official Email">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
+                            </a>
+                          )}
+                          {tm.github && (
+                            <a href={tm.github} target="_blank" rel="noopener noreferrer" className="member-social-link" title="GitHub">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" /></svg>
+                            </a>
+                          )}
+                          {tm.linkedin && (
+                            <a href={tm.linkedin} target="_blank" rel="noopener noreferrer" className="member-social-link" title="LinkedIn">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
+                            </a>
+                          )}
+                          {tm.twitter && (
+                            <a href={tm.twitter} target="_blank" rel="noopener noreferrer" className="member-social-link" title="Twitter / X">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" /></svg>
+                            </a>
+                          )}
+                          {tm.website && (
+                            <a href={tm.website} target="_blank" rel="noopener noreferrer" className="member-social-link" title="Website / Profile">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </>
+            )}
           </div>
         </section>
       )}

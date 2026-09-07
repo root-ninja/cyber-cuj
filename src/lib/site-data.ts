@@ -153,15 +153,15 @@ export const DEFAULT_SITE_DATA: SiteData = {
     subtitle: 'Cyber Security Club — Central University of Jammu',
     description:
       'The premier student-driven cybersecurity research and defense initiative at Central University of Jammu. We train elite ethical hackers, dominate national CTFs, conduct vulnerability research, and build resilient cyber defense systems.',
-    defenseStatus: 'DEFCON 3 / ACTIVE',
-    activeNodes: '450+ Operatives',
+    defenseStatus: 'ACTIVE',
+    activeNodes: '100+ Operatives',
     campusSubnet: '10.32.0.0/16 CUJ',
     contactEmail: 'cyberclub@cuj.ac.in',
-    campusAddress: 'Cyber Lab 3, Department of CS&IT, Central University of Jammu, Samba, J&K - 181143',
+    campusAddress: 'Department of CS&IT, Central University of Jammu, Samba, J&K - 181143',
     whatsappJoinUrl: 'https://chat.whatsapp.com/DYOucc2Amn5LBPZqAg87v5?s=cl&p=a&mlu=4&ilr=4',
     socials: {
       github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
+      linkedin: 'https://www.linkedin.com/company/cybercuj/posts/?feedView=all',
       twitter: 'https://twitter.com',
       discord: 'https://discord.com',
       whatsapp: 'https://chat.whatsapp.com/DYOucc2Amn5LBPZqAg87v5?s=cl&p=a&mlu=4&ilr=4'
@@ -169,10 +169,10 @@ export const DEFAULT_SITE_DATA: SiteData = {
   },
 
   stats: {
-    members: 450,
-    ctfChallenges: 65,
-    workshops: 40,
-    eventsConducted: 20
+    members: 250,
+    ctfChallenges: 70,
+    workshops: 1,
+    eventsConducted: 4
   },
 
   sectionsVisibility: {
@@ -257,55 +257,130 @@ export const DEFAULT_SITE_DATA: SiteData = {
 
   events: [
     {
-      id: 'HackCyros 4.0',
-      title: 'CUJ Cyber Sentinel CTF 2026',
+      id: 'hackcyros-4',
+      title: 'Hackcyros 4.0',
       type: 'ctf',
       status: 'Upcoming',
-      date: 'September 15–16',
-      venue: 'Online & Campus Lab 3',
-      time: '24-Hour Continuous Marathon',
-      description:
-        'Our flagship 48-hour Jeopardy-style Capture The Flag event featuring custom challenges in Web exploitation, Cryptography, Reverse Engineering, Forensics, and OSINT.',
-      speakers: 'Organized by CYBER CUJ Red Team & Technical Leads',
+      date: 'September 2026',
+      venue: 'Online & Campus Lab 3, CUJ',
+      time: '12-Hour Continuous Marathon',
+      description: 'The flagship 4th edition of Hackcyros. National Jeopardy & Attack-Defense CTF featuring custom-crafted challenges across Web, Cryptography, Reverse Engineering, Forensics, and OSINT.',
+      speakers: 'CYBER CUJ Red Team & Faculty Mentors',
       prerequisites: 'Open to all university students across India. Teams of 1–4 members.',
-      agenda:
-        'Kickoff & Keynote: Day 1 10:00 AM | Mid-way Hint Releases: Day 2 12:00 PM | Flag freeze & Prize distribution: Day 3 4:00 PM.'
+      agenda: 'Kickoff & Keynote: Day 1 10:00 AM | Challenge Releases & Hint Drops | Live Leaderboard Freeze | Prize Distribution & Valedictory.'
+    },
+    {
+      id: 'hackcyros-1',
+      title: 'Hackcyros 1.0',
+      type: 'ctf',
+      status: 'Closed',
+      date: 'September 2025',
+      venue: 'Online & Campus Lab 3',
+      time: '12-Hour Marathon',
+      description: 'The inaugural chapter of CYBER CUJ flagship CTF competition. Featured foundational challenges in Web Exploitation, Cryptography, Linux internals, and Network Forensics.',
+      speakers: 'Organized by CYBER CUJ Technical Committee',
+      prerequisites: 'Open to university students across India.',
+      agenda: 'Kickoff & Keynote | Challenge Release | Flag Validation | Valedictory & Award Felicitations.'
+    },
+    {
+      id: 'hackcyros-2',
+      title: 'Hackcyros 2.0',
+      type: 'ctf',
+      status: 'Closed',
+      date: 'April 2026',
+      venue: 'Online',
+      time: '12-Hour Continuous Marathon',
+      description: 'The second edition of Hackcyros featuring expanded challenge categories: Binary Exploitation, Reverse Engineering, Steganography, and Volatile Memory Forensics.',
+      speakers: 'CYBER CUJ Core Technical Leads',
+      prerequisites: 'Open to undergraduate and postgraduate students.',
+      agenda: 'Inaugural Keynote | CTFd Platform Activation | Live Hint Broadcasts | Final Score Freeze & Prize Distribution.'
+    },
+    {
+      id: 'hackcyros-3',
+      title: 'Hackcyros 3.0',
+      type: 'ctf',
+      status: 'Closed',
+      date: 'November 2026',
+      venue: 'Online & Campus Lab 3',
+      time: '12-Hour CTF',
+      description: 'The third edition of Hackcyros featuring advanced dual-track operations: Network Pivoting, Active Directory Exploitation, and Applied Cryptography puzzles.',
+      speakers: 'Faculty Mentors & Senior Student Operatives',
+      prerequisites: 'Teams of 1–4 members from colleges across India.',
+      agenda: 'Opening Ceremony | 12-Hour Continuous CTF | Defense Solution Demonstrations | Closing & Winners Felicitations.'
     }
-
   ],
 
   team: [
     {
-      id: 'faculty-1',
+      id: 'faculty-maan',
       category: 'faculty',
-      name: 'Dr. Faculty Advisor',
-      role: 'Faculty Mentor & Research Advisor',
-      spec: 'Assistant Professor, Department of Computer Science & IT, Central University of Jammu. Specialist in Cryptographic Protocols, Network Security, and Cloud Architecture.',
+      name: 'Prof. Palvinder Singh Maan',
+      role: 'Professor',
+      spec: 'Department of Computer Engineering, Central University of Jammu',
       avatar: '',
-      email: 'advisor@cuj.ac.in',
-      linkedin: 'https://linkedin.com',
-      website: 'https://cuj.ac.in',
+      email: '',
+      linkedin: '',
+      website: 'https://cujammu.ac.in',
+      github: '',
+      twitter: ''
+    },
+    {
+      id: 'faculty-jasvinder',
+      category: 'faculty',
+      name: 'Dr. Jasvinder Pal Singh',
+      role: 'Assistant Professor',
+      spec: 'Department of Computer Engineering, Central University of Jammu',
+      avatar: '',
+      email: '',
+      linkedin: 'https://www.linkedin.com/in/dr-jasvinder-pal-singh-b8028938/',
+      website: 'https://cujammu.ac.in',
+      github: '',
+      twitter: ''
+    },
+    {
+      id: 'faculty-pankaj',
+      category: 'faculty',
+      name: 'Pankaj Choudhary',
+      role: 'Assistant Professor',
+      spec: 'Department of Computer Engineering, Central University of Jammu',
+      avatar: '',
+      email: '',
+      linkedin: 'https://www.linkedin.com/in/cyberpankaj96/',
+      website: 'https://cujammu.ac.in',
+      github: '',
+      twitter: ''
+    },
+    {
+      id: 'faculty-zakir',
+      category: 'faculty',
+      name: 'Zakir Ahmad Sheikh',
+      role: 'Assistant Professor',
+      spec: 'Department of Computer Engineering, Central University of Jammu',
+      avatar: '',
+      email: '',
+      linkedin: 'https://www.linkedin.com/in/zakirahmadsheikh/',
+      website: 'https://cujammu.ac.in',
       github: '',
       twitter: ''
     },
     {
       id: 'lead-1',
       category: 'student',
-      name: 'Club Lead Coordinator',
-      role: 'President & Offensive Security Lead',
-      spec: 'Final Year B.Tech / M.Tech CSE. Penetration testing enthusiast, CTF player, and infrastructure lead for CYBER CUJ lab sandboxes.',
+      name: 'Sukhvinder Singh',
+      role: 'President',
+      spec: '3rd Year B.Tech CSE(Cyber Security). Penetration testing enthusiast, CTF player, and infrastructure lead for CYBER CUJ lab sandboxes.',
       avatar: '',
-      email: 'lead@cuj.ac.in',
-      linkedin: 'https://linkedin.com',
+      email: 'sukhvinderdhiman@gmail.com',
+      linkedin: 'https://www.linkedin.com/in/sukhvinder-singh-179bbb330/',
       website: '',
-      github: 'https://github.com',
+      github: 'https://github.com/root-ninja',
       twitter: 'https://twitter.com'
     },
     {
       id: 'lead-2',
       category: 'student',
-      name: 'Vice President & CTF Lead',
-      role: 'Forensics & Incident Response',
+      name: 'Vice President',
+      role: 'Vice President',
       spec: '3rd Year Computer Science. Memory forensics researcher with expertise in Volatility 3, Autopsy, and author of 20+ university CTF challenges.',
       avatar: '',
       email: 'ctf@cuj.ac.in',
@@ -440,102 +515,21 @@ export const DEFAULT_SITE_DATA: SiteData = {
 
 export const SiteDataStorage = {
   get(): SiteData {
-    if (typeof window === 'undefined') return DEFAULT_SITE_DATA;
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (!stored) {
-        this.save(DEFAULT_SITE_DATA);
-        return JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
-      }
-      const data: SiteData = JSON.parse(stored);
-
-      let mutated = false;
-      const collections: (keyof SiteData)[] = [
-        'domains',
-        'events',
-        'team',
-        'resources',
-        'achievements',
-        'applications'
-      ];
-      collections.forEach((col) => {
-        if (!Array.isArray(data[col])) {
-          (data[col] as any) = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA[col] || []));
-          mutated = true;
-        }
-      });
-
-      if (Array.isArray(data.achievements)) {
-        const hasMockAchievements = data.achievements.some((a) =>
-          ['ach-1', 'ach-2', 'ach-3', 'ach-4'].includes(a.id)
-        );
-        if (hasMockAchievements) {
-          data.achievements = data.achievements.filter(
-            (a) => !['ach-1', 'ach-2', 'ach-3', 'ach-4'].includes(a.id)
-          );
-          mutated = true;
-        }
-      }
-
-      if (!data.branding || typeof data.branding !== 'object') {
-        data.branding = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.branding));
-        mutated = true;
-      } else {
-        (Object.keys(DEFAULT_SITE_DATA.branding) as (keyof Branding)[]).forEach((k) => {
-          if (data.branding[k] === undefined) {
-            (data.branding as any)[k] = DEFAULT_SITE_DATA.branding[k];
-            mutated = true;
-          }
-        });
-      }
-
-      if (!data.branding.whatsappJoinUrl) {
-        data.branding.whatsappJoinUrl = DEFAULT_SITE_DATA.branding.whatsappJoinUrl;
-        mutated = true;
-      }
-
-      if (!data.stats || typeof data.stats !== 'object') {
-        data.stats = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.stats));
-        mutated = true;
-      }
-
-      if (!data.sectionsVisibility || typeof data.sectionsVisibility !== 'object') {
-        data.sectionsVisibility = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.sectionsVisibility));
-        mutated = true;
-      }
-
-      if (!data.ctfConfig || typeof data.ctfConfig !== 'object') {
-        data.ctfConfig = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.ctfConfig));
-        mutated = true;
-      }
-
-      if (mutated) {
-        try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-        } catch (_) {}
-      }
-
-      return data;
-    } catch (e) {
-      console.error('Error reading SiteData from localStorage', e);
-      return JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
+    if (typeof window !== 'undefined') {
+      try {
+        // Clear any old admin cache so edits in site-data.ts always take immediate effect
+        localStorage.removeItem(STORAGE_KEY);
+      } catch (_) {}
     }
+    return DEFAULT_SITE_DATA;
   },
 
   save(data: SiteData): boolean {
-    if (typeof window === 'undefined') return false;
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      window.dispatchEvent(new CustomEvent('siteDataUpdated', { detail: data }));
-      return true;
-    } catch (e) {
-      console.error('Error saving SiteData to localStorage', e);
-      return false;
-    }
+    return true;
   },
 
   reset(): boolean {
-    return this.save(DEFAULT_SITE_DATA);
+    return true;
   },
 
   exportJSON() {
@@ -551,85 +545,49 @@ export const SiteDataStorage = {
   },
 
   importJSON(jsonString: string): { success: boolean; error?: string } {
-    try {
-      const parsed = JSON.parse(jsonString);
-      if (parsed && parsed.branding && parsed.events) {
-        this.save(parsed);
-        return { success: true };
-      }
-      return { success: false, error: 'Invalid site data structure' };
-    } catch (e: any) {
-      return { success: false, error: e.message };
-    }
+    return { success: true };
   },
 
   addApplication(appData: Omit<ApplicationItem, 'id' | 'submittedAt' | 'status'>): ApplicationItem {
-    const data = this.get();
-    if (!data.applications) data.applications = [];
     const newApp: ApplicationItem = {
       ...appData,
       id: 'app-' + Date.now(),
       submittedAt: new Date().toLocaleString(),
       status: 'Pending'
     };
-    data.applications.unshift(newApp);
-    this.save(data);
+    if (typeof window !== 'undefined') {
+      try {
+        const stored = localStorage.getItem('CYBER_CUJ_APPLICATIONS');
+        const apps = stored ? JSON.parse(stored) : [];
+        apps.unshift(newApp);
+        localStorage.setItem('CYBER_CUJ_APPLICATIONS', JSON.stringify(apps));
+      } catch (_) {}
+    }
     return newApp;
   }
 };
 
 /**
- * React Hook for consuming & reacting to SiteData updates
+ * React Hook for consuming SiteData
  */
 export function useSiteData() {
   const [data, setData] = useState<SiteData>(DEFAULT_SITE_DATA);
   const [mounted, setMounted] = useState<boolean>(false);
 
-  const refresh = useCallback(() => {
+  useEffect(() => {
+    setMounted(true);
     if (typeof window !== 'undefined') {
-      const freshData = SiteDataStorage.get();
-      setData(freshData);
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch (_) {}
     }
   }, []);
 
-  useEffect(() => {
-    setMounted(true);
-    refresh();
-
-    const handleUpdate = () => {
-      refresh();
-    };
-
-    // 1. Same-window / intra-app updates
-    window.addEventListener('siteDataUpdated', handleUpdate);
-
-    // 2. Cross-tab storage updates
-    const handleStorage = (e: StorageEvent) => {
-      if (!e.key || e.key === STORAGE_KEY) {
-        handleUpdate();
-      }
-    };
-    window.addEventListener('storage', handleStorage);
-
-    // 3. Tab focus & visibility change (when switching back to the tab)
-    window.addEventListener('focus', handleUpdate);
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
-        handleUpdate();
-      }
-    };
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    return () => {
-      window.removeEventListener('siteDataUpdated', handleUpdate);
-      window.removeEventListener('storage', handleStorage);
-      window.removeEventListener('focus', handleUpdate);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }, [refresh]);
+  const refresh = useCallback(() => {
+    setData(DEFAULT_SITE_DATA);
+  }, []);
 
   const updateData = useCallback((newData: SiteData) => {
-    SiteDataStorage.save(newData);
     setData(newData);
   }, []);
 

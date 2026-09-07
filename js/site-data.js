@@ -1,6 +1,9 @@
 /**
- * CYBER CUJ — Central Site Data & CMS State Management
- * Provides shared persistence between the public website and the Administrator CMS.
+ * NOTE: The Next.js website (localhost:3000) reads all website content from:
+ *       >>> src/lib/site-data.ts <<<
+ * Please make your edits directly in src/lib/site-data.ts for changes to reflect on localhost!
+ *
+ * CYBER CUJ — Central Site Data (Legacy static fallback)
  */
 
 const STORAGE_KEY = 'CYBER_CUJ_SITE_DATA';
@@ -13,15 +16,15 @@ const DEFAULT_SITE_DATA = {
     tagline: 'Learn. Hack. Defend.',
     subtitle: 'Cyber Security Club — Central University of Jammu',
     description: 'The premier student-driven cybersecurity research and defense initiative at Central University of Jammu. We train elite ethical hackers, dominate national CTFs, conduct vulnerability research, and build resilient cyber defense systems.',
-    defenseStatus: 'DEFCON 3 / ACTIVE',
-    activeNodes: '450+ Operatives',
+    defenseStatus: 'ACTIVE',
+    activeNodes: '100+ Operatives',
     campusSubnet: '10.32.0.0/16 CUJ',
     contactEmail: 'cyberclub@cuj.ac.in',
-    campusAddress: 'Cyber Lab 3, Department of CS&IT, Central University of Jammu, Samba, J&K - 181143',
+    campusAddress: 'Department of CS&IT, Central University of Jammu, Samba, J&K - 181143',
     whatsappJoinUrl: 'https://chat.whatsapp.com/DYOucc2Amn5LBPZqAg87v5?s=cl&p=a&mlu=4&ilr=4',
     socials: {
       github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
+      linkedin: 'https://www.linkedin.com/company/cybercuj/posts/?feedView=all',
       twitter: 'https://twitter.com',
       discord: 'https://discord.com',
       whatsapp: 'https://chat.whatsapp.com/DYOucc2Amn5LBPZqAg87v5?s=cl&p=a&mlu=4&ilr=4'
@@ -29,10 +32,10 @@ const DEFAULT_SITE_DATA = {
   },
 
   stats: {
-    members: 450,
-    ctfChallenges: 65,
-    workshops: 40,
-    eventsConducted: 20
+    members: 250,
+    ctfChallenges: 70,
+    workshops: 1,
+    eventsConducted: 4
   },
 
   sectionsVisibility: {
@@ -116,33 +119,111 @@ const DEFAULT_SITE_DATA = {
   ],
 
   events: [
-    {
-      id: 'HackCyros 4.0',
-      title: 'CUJ Cyber Sentinel CTF 2026',
+        {
+      id: 'hackcyros-4',
+      title: 'Hackcyros 4.0',
       type: 'ctf',
       status: 'Upcoming',
-      date: 'September 15–16',
-      venue: 'Online & Campus Lab 3',
-      time: '48-Hour Continuous Marathon',
-      description: 'Our flagship 48-hour Jeopardy-style Capture The Flag event featuring custom challenges in Web exploitation, Cryptography, Reverse Engineering, Forensics, and OSINT.',
-      speakers: 'Organized by CYBER CUJ Red Team & Technical Leads',
+      date: 'September 2026',
+      venue: 'Online & Campus Lab 3, CUJ',
+      time: '12-Hour Continuous Marathon',
+      description: 'The flagship 4th edition of Hackcyros. National Jeopardy & Attack-Defense CTF featuring custom-crafted challenges across Web, Cryptography, Reverse Engineering, Forensics, and OSINT.',
+      speakers: 'CYBER CUJ Red Team & Faculty Mentors',
       prerequisites: 'Open to all university students across India. Teams of 1–4 members.',
-      agenda: 'Kickoff & Keynote: Day 1 10:00 AM | Mid-way Hint Releases: Day 2 12:00 PM | Flag freeze & Prize distribution: Day 3 4:00 PM.'
+      agenda: 'Kickoff & Keynote: Day 1 10:00 AM | Challenge Releases & Hint Drops | Live Leaderboard Freeze | Prize Distribution & Valedictory.'
+    },
+    {
+      id: 'hackcyros-1',
+      title: 'Hackcyros 1.0',
+      type: 'ctf',
+      status: 'Closed',
+      date: 'September 2025',
+      venue: 'Online & Campus Lab 3',
+      time: '12-Hour Marathon',
+      description: 'The inaugural chapter of CYBER CUJ flagship CTF competition. Featured foundational challenges in Web Exploitation, Cryptography, Linux internals, and Network Forensics.',
+      speakers: 'Organized by CYBER CUJ Technical Committee',
+      prerequisites: 'Open to university students across India.',
+      agenda: 'Kickoff & Keynote | Challenge Release | Flag Validation | Valedictory & Award Felicitations.'
+    },
+    {
+      id: 'hackcyros-2',
+      title: 'Hackcyros 2.0',
+      type: 'ctf',
+      status: 'Closed',
+      date: 'April 2026',
+      venue: 'Online',
+      time: '12-Hour Continuous Marathon',
+      description: 'The second edition of Hackcyros featuring expanded challenge categories: Binary Exploitation, Reverse Engineering, Steganography, and Volatile Memory Forensics.',
+      speakers: 'CYBER CUJ Core Technical Leads',
+      prerequisites: 'Open to undergraduate and postgraduate students.',
+      agenda: 'Inaugural Keynote | CTFd Platform Activation | Live Hint Broadcasts | Final Score Freeze & Prize Distribution.'
+    },
+    {
+      id: 'hackcyros-3',
+      title: 'Hackcyros 3.0',
+      type: 'ctf',
+      status: 'Closed',
+      date: 'November 2026',
+      venue: 'Online & Campus Lab 3',
+      time: '12-Hour CTF',
+      description: 'The third edition of Hackcyros featuring advanced dual-track operations: Network Pivoting, Active Directory Exploitation, and Applied Cryptography puzzles.',
+      speakers: 'Faculty Mentors & Senior Student Operatives',
+      prerequisites: 'Teams of 1–4 members from colleges across India.',
+      agenda: 'Opening Ceremony | 12-Hour Continuous CTF | Defense Solution Demonstrations | Closing & Winners Felicitations.'
     }
 
   ],
 
   team: [
     {
-      id: 'faculty-1',
+      id: 'faculty-maan',
       category: 'faculty',
-      name: 'Dr. Faculty Advisor',
-      role: 'Faculty Mentor & Research Advisor',
-      spec: 'Assistant Professor, Department of Computer Science & IT, Central University of Jammu. Specialist in Cryptographic Protocols, Network Security, and Cloud Architecture.',
+      name: 'Prof. Palvinder Singh Maan',
+      role: 'Professor',
+      spec: 'Department of Computer Engineering, Central University of Jammu',
       avatar: '',
-      email: 'advisor@cuj.ac.in',
-      linkedin: 'https://linkedin.com',
-      website: 'https://cuj.ac.in',
+      email: '',
+      linkedin: '',
+      website: 'https://cujammu.ac.in',
+      github: '',
+      twitter: ''
+    },
+    {
+      id: 'faculty-jasvinder',
+      category: 'faculty',
+      name: 'Dr. Jasvinder Pal Singh',
+      role: 'Assistant Professor',
+      spec: 'Department of Computer Engineering, Central University of Jammu',
+      avatar: '',
+      email: '',
+      linkedin: 'https://www.linkedin.com/in/dr-jasvinder-pal-singh-b8028938/',
+      website: 'https://cujammu.ac.in',
+      github: '',
+      twitter: ''
+    },
+    {
+      id: 'faculty-pankaj',
+      category: 'faculty',
+      name: 'Pankaj Choudhary',
+      role: 'Assistant Professor',
+      spec: 'Department of Computer Engineering, Central University of Jammu',
+      avatar: '',
+      email: '',
+      linkedin: 'https://www.linkedin.com/in/cyberpankaj96/',
+      website: 'https://cujammu.ac.in',
+      github: '',
+      twitter: ''
+    },
+    {
+      id: 'faculty-zakir',
+      category: 'faculty',
+      name: 'Zakir Ahmad Sheikh',
+      role: 'Assistant Professor',
+      spec: 'Department of Computer Engineering, Central University of Jammu',
+      avatar: '',
+      email: '',
+      linkedin: ' https://www.linkedin.com/in/zakirahmadsheikh/',
+      website: 'https://cujammu.ac.in',
       github: '',
       twitter: ''
     },
@@ -317,6 +398,14 @@ window.SiteData = {
         }
       });
 
+      if (Array.isArray(data.events)) {
+        const hasHackcyrosSeries = data.events.some(ev => ev.id === 'hackcyros-1');
+        if (!hasHackcyrosSeries || data.events.length < 4) {
+          data.events = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.events));
+          mutated = true;
+        }
+      }
+
       if (Array.isArray(data.achievements)) {
         const hasMockAchievements = data.achievements.some(a =>
           ['ach-1', 'ach-2', 'ach-3', 'ach-4'].includes(a.id)
@@ -325,6 +414,21 @@ window.SiteData = {
           data.achievements = data.achievements.filter(a =>
             !['ach-1', 'ach-2', 'ach-3', 'ach-4'].includes(a.id)
           );
+          mutated = true;
+        }
+      }
+
+      if (Array.isArray(data.team)) {
+        const hasMockAdvisor = data.team.some(tm =>
+          tm.id === 'faculty-1' || tm.name === 'Dr. Faculty Advisor'
+        );
+        const hasMaan = data.team.some(tm =>
+          tm.name && tm.name.includes('Palvinder Singh Maan')
+        );
+        if (hasMockAdvisor || !hasMaan) {
+          const currentNonFaculty = data.team.filter(tm => tm.category !== 'faculty');
+          const defaultFaculty = DEFAULT_SITE_DATA.team.filter(tm => tm.category === 'faculty');
+          data.team = [...defaultFaculty, ...currentNonFaculty];
           mutated = true;
         }
       }

@@ -181,31 +181,42 @@ function hydrateFromSiteData() {
 
   // 4. Events Grid Hydration
   const eventsGrid = document.getElementById('events-grid');
-  if (eventsGrid && data.events && data.events.length) {
-    eventsGrid.innerHTML = data.events.map(ev => `
-      <div class="event-card" data-type="${escapeHTML(ev.type)}">
-        <div class="event-top">
-          <span class="event-type-badge">${escapeHTML(ev.type.toUpperCase())}</span>
-          <span class="event-status ${ev.status === 'Upcoming' ? 'upcoming' : ''}">${escapeHTML(ev.status)}</span>
-        </div>
-        <h3 class="event-title">${escapeHTML(ev.title)}</h3>
-        <div class="event-meta">
-          <div class="event-meta-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            <span>${escapeHTML(ev.date)} ${ev.time ? `(${escapeHTML(ev.time)})` : ''}</span>
+  if (eventsGrid) {
+    if (data.events && data.events.length) {
+      eventsGrid.innerHTML = data.events.map(ev => `
+        <div class="event-card" data-type="${escapeHTML(ev.type)}">
+          <div class="event-top">
+            <span class="event-type-badge">${escapeHTML(ev.type.toUpperCase())}</span>
+            <span class="event-status ${ev.status === 'Upcoming' ? 'upcoming' : ''}">${escapeHTML(ev.status)}</span>
           </div>
-          <div class="event-meta-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>${escapeHTML(ev.venue)}</span>
+          <h3 class="event-title">${escapeHTML(ev.title)}</h3>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>${escapeHTML(ev.date)} ${ev.time ? `(${escapeHTML(ev.time)})` : ''}</span>
+            </div>
+            <div class="event-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>${escapeHTML(ev.venue)}</span>
+            </div>
+          </div>
+          <p class="event-desc">${escapeHTML(ev.description)}</p>
+          <div class="event-footer">
+            <span class="mono" style="font-size: 0.8rem; color: var(--neon-cyan);">${ev.speakers ? escapeHTML(ev.speakers.slice(0, 24)) + '...' : 'CUJ Cyber Lab'}</span>
+            <button class="btn btn-outline btn-sm view-event-btn" data-id="${escapeHTML(ev.id)}">View Details</button>
           </div>
         </div>
-        <p class="event-desc">${escapeHTML(ev.description)}</p>
-        <div class="event-footer">
-          <span class="mono" style="font-size: 0.8rem; color: var(--neon-cyan);">${ev.speakers ? escapeHTML(ev.speakers.slice(0, 24)) + '...' : 'CUJ Cyber Lab'}</span>
-          <button class="btn btn-outline btn-sm view-event-btn" data-id="${escapeHTML(ev.id)}">View Details</button>
+      `).join('');
+    } else {
+      eventsGrid.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 44px 24px; border: 1px dashed rgba(0, 229, 255, 0.3); border-radius: var(--radius-md); background: linear-gradient(180deg, rgba(0, 229, 255, 0.04) 0%, rgba(5, 8, 17, 0.7) 100%); font-family: var(--font-mono); max-width: 680px; margin: 0 auto; width: 100%;">
+          <div style="color: var(--accent-cyan); font-size: 1.8rem; margin-bottom: 12px;">⚡</div>
+          <div style="color: #fff; font-size: 1.05rem; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 8px;">[ OPERATIONS NOTICE // SCHEDULE ]</div>
+          <div style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">Club events, CTFs, and hackathon schedules are currently being planned for 2026.</div>
+          <div style="color: var(--accent-cyan); font-size: 0.78rem; margin-top: 12px; opacity: 0.85;">// UPCOMING OPERATIONS WILL BE BROADCAST HERE</div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }
   }
 
   // 5. Team Section Hydration
