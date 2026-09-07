@@ -52,17 +52,22 @@ export default function CyberNavbar() {
 
   const waUrl = data.branding?.whatsappJoinUrl || 'https://chat.whatsapp.com/DYOucc2Amn5LBPZqAg87v5?s=cl&p=a&mlu=4&ilr=4';
 
+  const siteName = data.branding?.siteName || 'CYBER CUJ';
+  const nameParts = siteName.split(' ');
+  const firstName = nameParts[0] || 'CYBER';
+  const restName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
+
   return (
     <header className={`cyber-navbar ${scrolled ? 'scrolled' : ''}`} role="banner">
       <div className="container nav-container">
         {/* Brand Logo */}
-        <a href="#hero" className="brand-logo" aria-label="CYBER CUJ Home" onClick={() => soundActive && getCyberAudio().playBlip(500, 0.03)}>
+        <a href="#hero" className="brand-logo" aria-label={`${siteName} Home`} onClick={() => soundActive && getCyberAudio().playBlip(500, 0.03)}>
           <div className="h-10 w-10">
-            <img src="/logo.png" alt="CYBER CUJ Logo" width="40" height="40" style={{borderRadius: '50%', marginTop: '0.5rem'}} />
+            <img src="/logo.png" alt={`${siteName} Logo`} width="40" height="40" style={{borderRadius: '50%', marginTop: '0.5rem'}} />
           </div>
           <div className="brand-text-wrap">
             <span className="brand-name">
-              CYBER<span>CUJ</span>
+              {firstName}{restName && <span>{restName}</span>}
             </span>
             <span className="brand-affil">{data.branding?.orgName || 'Central University of Jammu'}</span>
           </div>
@@ -85,7 +90,7 @@ export default function CyberNavbar() {
         <div className="nav-actions">
           <div className="status-badge" title="Network Protocol: TLS 1.3 Active">
             <span className="status-pulse"></span>
-            <span>ONLINE // DEFCON 3</span>
+            <span>{data.branding?.defenseStatus ? `ONLINE // ${data.branding.defenseStatus}` : 'ONLINE // DEFCON 3'}</span>
           </div>
 
           <button

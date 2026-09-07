@@ -10,6 +10,106 @@ import CyberTerminal from '@/components/CyberTerminal';
 import EventModal from '@/components/EventModal';
 import CTFArena from '@/components/CTFArena';
 
+function renderDomainIcon(icon: string) {
+  switch ((icon || '').toLowerCase()) {
+    case 'crosshair':
+      return (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="22" y1="12" x2="18" y2="12" /><line x1="6" y1="12" x2="2" y2="12" />
+          <line x1="12" y1="6" x2="12" y2="2" /><line x1="12" y1="22" x2="12" y2="18" />
+        </svg>
+      );
+    case 'flag':
+      return (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+          <line x1="4" y1="22" x2="4" y2="15" />
+        </svg>
+      );
+    case 'search':
+      return (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      );
+    case 'globe':
+      return (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="2" y1="12" x2="22" y2="12" />
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+        </svg>
+      );
+    case 'server':
+      return (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+          <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+          <line x1="6" y1="6" x2="6.01" y2="6" /><line x1="6" y1="18" x2="6.01" y2="18" />
+        </svg>
+      );
+    case 'lock':
+      return (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+      );
+    case 'eye':
+      return (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      );
+    case 'terminal':
+    default:
+      return (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <polyline points="4 17 10 11 4 5" /><line x1="12" y1="19" x2="20" y2="19" />
+        </svg>
+      );
+  }
+}
+
+function renderAchievementIcon(icon: string) {
+  switch ((icon || '').toLowerCase()) {
+    case 'shield':
+      return (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+      );
+    case 'cert':
+      return (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" />
+          <polyline points="10 9 9 9 8 9" />
+        </svg>
+      );
+    case 'star':
+      return (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg>
+      );
+    case 'trophy':
+    default:
+      return (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+          <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+          <path d="M4 22h16" />
+          <path d="M10 14.66V17c0 .55-.45 1-1 1H8v4h8v-4h-1c-.55 0-1-.45-1-1v-2.34" />
+          <path d="M18 2H6v7a6 6 0 0 0 12 0V2z" />
+        </svg>
+      );
+  }
+}
+
 export default function HomePage() {
   const { data, mounted } = useSiteData();
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
@@ -41,6 +141,17 @@ export default function HomePage() {
   const s = data.stats;
   const v = data.sectionsVisibility;
   const waUrl = b.whatsappJoinUrl || 'https://chat.whatsapp.com/DYOucc2Amn5LBPZqAg87v5?s=cl&p=a&mlu=4&ilr=4';
+
+  useEffect(() => {
+    if (b?.siteName && b?.orgName) {
+      document.title = `${b.siteName} — ${b.orgName}`;
+    }
+  }, [b?.siteName, b?.orgName]);
+
+  const siteName = b.siteName || 'CYBER CUJ';
+  const nameParts = siteName.split(' ');
+  const firstWord = nameParts[0] || 'CYBER';
+  const restWords = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
 
   // Events filtering
   const filteredEvents = (data.events || []).filter((ev) => {
@@ -133,8 +244,8 @@ export default function HomePage() {
                 </div>
 
                 <h1 className="hero-title">
-                  <span className="glow-text">CYBER</span>
-                  <span className="cyber-accent">CUJ</span>
+                  <span className="glow-text">{firstWord}</span>
+                  {restWords && <span className="cyber-accent"> {restWords}</span>}
                 </h1>
 
                 <div className="hero-subtitle">{b.subtitle}</div>
@@ -206,7 +317,7 @@ export default function HomePage() {
               <div className="section-tag">WHO WE ARE</div>
               <h2 className="section-title">Architecting Campus Defense &amp; Offensive Research</h2>
               <p className="section-desc">
-                Central University of Jammu’s premier student-led technical syndicate dedicated to elite training in ethical hacking, cyber warfare defense, and defensive infrastructure engineering.
+                {b.orgName}’s premier student-led technical syndicate dedicated to elite training in ethical hacking, cyber warfare defense, and defensive infrastructure engineering.
               </p>
             </div>
 
@@ -214,7 +325,7 @@ export default function HomePage() {
               <div className="about-text">
                 <h3>Defending the Future of Digital India</h3>
                 <p>
-                  Established at the Central University of Jammu, CYBER CUJ bridges the gap between academic computer science curricula and modern offensive/defensive cybersecurity operations.
+                  Established at {b.orgName}, {siteName} bridges the gap between academic computer science curricula and modern offensive/defensive cybersecurity operations.
                 </p>
                 <p>
                   Our operatives investigate zero-day vulnerabilities, dissect memory dumps, master kernel-level security, analyze malware sandboxes, and organize regional capture-the-flag competitions to train the next generation of certified security professionals.
@@ -251,7 +362,7 @@ export default function HomePage() {
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
                   </div>
                   <h4 className="pillar-title">CTF Competitive Squad</h4>
-                  <p className="pillar-desc">Representing Central University of Jammu at prestigious national and international Capture The Flag tournaments across all security tracks.</p>
+                  <p className="pillar-desc">Representing {b.orgName} at prestigious national and international Capture The Flag tournaments across all security tracks.</p>
                 </div>
 
                 <div className="pillar-item">
@@ -304,10 +415,7 @@ export default function HomePage() {
                 <div key={dm.id} className="domain-card">
                   <div className="domain-header">
                     <div className="domain-icon">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="4 17 10 11 4 5" />
-                        <line x1="12" y1="19" x2="20" y2="19" />
-                      </svg>
+                      {renderDomainIcon(dm.icon)}
                     </div>
                     <span className="domain-code">{dm.code}</span>
                   </div>
@@ -451,6 +559,11 @@ export default function HomePage() {
                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
                         </a>
                       )}
+                      {tm.website && (
+                        <a href={tm.website} target="_blank" rel="noopener noreferrer" className="member-social-link" title="Website / Profile">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>
+                        </a>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -497,6 +610,11 @@ export default function HomePage() {
                       {tm.linkedin && (
                         <a href={tm.linkedin} target="_blank" rel="noopener noreferrer" className="member-social-link" title="LinkedIn">
                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
+                        </a>
+                      )}
+                      {tm.twitter && (
+                        <a href={tm.twitter} target="_blank" rel="noopener noreferrer" className="member-social-link" title="Twitter / X">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" /></svg>
                         </a>
                       )}
                     </div>
@@ -554,20 +672,24 @@ export default function HomePage() {
             </div>
 
             <div className="achieve-grid">
-              {(data.achievements || []).map((ach) => (
-                <div key={ach.id} className="achieve-card">
-                  <div className="achieve-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                    </svg>
+              {(data.achievements || []).length > 0 ? (
+                (data.achievements || []).map((ach) => (
+                  <div key={ach.id} className="achieve-card">
+                    <div className="achieve-icon">
+                      {renderAchievementIcon(ach.icon)}
+                    </div>
+                    <div className="achieve-content">
+                      <div className="achieve-year">{ach.year}</div>
+                      <h3 className="achieve-title">{ach.title}</h3>
+                      <p className="achieve-desc">{ach.desc}</p>
+                    </div>
                   </div>
-                  <div className="achieve-content">
-                    <div className="achieve-year">{ach.year}</div>
-                    <h3 className="achieve-title">{ach.title}</h3>
-                    <p className="achieve-desc">{ach.desc}</p>
-                  </div>
+                ))
+              ) : (
+                <div style={{ gridColumn: '1 / -1', textAlign: 'center', color: 'var(--text-muted)', padding: 40, fontFamily: 'var(--font-mono)' }}>
+                  [!] No achievements currently published. Check back soon!
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </section>
@@ -749,33 +871,35 @@ export default function HomePage() {
               </div>
 
               {/* FAQ Accordion */}
-              <div>
-                <div className="section-tag green" style={{ marginBottom: 20 }}>
-                  Frequently Asked Questions
+              {v.faq !== false && (
+                <div>
+                  <div className="section-tag green" style={{ marginBottom: 20 }}>
+                    Frequently Asked Questions
+                  </div>
+                  <div className="faq-list">
+                    {faqs.map((faq, idx) => (
+                      <div key={idx} className={`faq-item ${faqOpen === idx ? 'open' : ''}`}>
+                        <button
+                          type="button"
+                          className="faq-question"
+                          onClick={() => {
+                            setFaqOpen(faqOpen === idx ? null : idx);
+                            getCyberAudio().playBlip(550, 0.03);
+                          }}
+                        >
+                          <span>{faq.q}</span>
+                          <span className="faq-icon">{faqOpen === idx ? '−' : '+'}</span>
+                        </button>
+                        {faqOpen === idx && (
+                          <div className="faq-answer">
+                            <p>{faq.a}</p>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="faq-list">
-                  {faqs.map((faq, idx) => (
-                    <div key={idx} className={`faq-item ${faqOpen === idx ? 'open' : ''}`}>
-                      <button
-                        type="button"
-                        className="faq-question"
-                        onClick={() => {
-                          setFaqOpen(faqOpen === idx ? null : idx);
-                          getCyberAudio().playBlip(550, 0.03);
-                        }}
-                      >
-                        <span>{faq.q}</span>
-                        <span className="faq-icon">{faqOpen === idx ? '−' : '+'}</span>
-                      </button>
-                      {faqOpen === idx && (
-                        <div className="faq-answer">
-                          <p>{faq.a}</p>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </section>
@@ -789,15 +913,15 @@ export default function HomePage() {
             <div>
               <div className="brand-logo" style={{ marginBottom: 16 }}>
                 <div className="h-10 w-10">
-                  <img src="/logo.png" alt="CYBER CUJ Logo" width="40" height="40" style={{ borderRadius: '50%', marginTop: '0.5rem' }} />
+                  <img src="/logo.png" alt={`${siteName} Logo`} width="40" height="40" style={{ borderRadius: '50%', marginTop: '0.5rem' }} />
                 </div>
                 <div className="brand-text-wrap">
-                  <span className="brand-name">CYBER<span>CUJ</span></span>
+                  <span className="brand-name">{firstWord}{restWords && <span>{restWords}</span>}</span>
                   <span className="brand-affil">{b.orgName}</span>
                 </div>
               </div>
               <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 18 }}>
-                The premier student-driven cybersecurity research and defense club at Central University of Jammu. Training ethical hackers and defending campus perimeters.
+                The premier student-driven cybersecurity research and defense club at {b.orgName}. Training ethical hackers and defending campus perimeters.
               </p>
             </div>
 
@@ -846,8 +970,13 @@ export default function HomePage() {
           </div>
 
           {/* Footer Bottom Strip */}
-          <div className="footer-bottom">
-            <div>&copy; 2026 CYBER CUJ — Central University of Jammu. All rights reserved.</div>
+          <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
+            <div>&copy; 2026 {siteName} — {b.orgName}. All rights reserved.</div>
+            <div>
+              <a href="/admin" style={{ color: 'var(--text-muted)', fontSize: '0.74rem', textDecoration: 'none', fontFamily: 'var(--font-mono)' }} title="Restricted SOC Access">
+                [SOC Admin Portal]
+              </a>
+            </div>
           </div>
         </div>
       </footer>

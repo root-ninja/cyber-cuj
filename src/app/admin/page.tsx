@@ -43,6 +43,23 @@ export default function AdminPage() {
   const [achievementModalOpen, setAchievementModalOpen] = useState(false);
   const [editingAchievement, setEditingAchievement] = useState<AchievementItem | null>(null);
 
+  // Decoupled Form States for smooth input & robust persistence
+  const [identityForm, setIdentityForm] = useState(data.branding);
+  const [statsForm, setStatsForm] = useState(data.stats);
+  const [ctfForm, setCtfForm] = useState(data.ctfConfig);
+  const [rawAcceptedFlags, setRawAcceptedFlags] = useState('');
+  const [rawDomainTags, setRawDomainTags] = useState('');
+
+  // Sync decoupled form states whenever global siteData is loaded or updated
+  useEffect(() => {
+    if (data?.branding) setIdentityForm(data.branding);
+    if (data?.stats) setStatsForm(data.stats);
+    if (data?.ctfConfig) {
+      setCtfForm(data.ctfConfig);
+      setRawAcceptedFlags((data.ctfConfig.miniChallenge?.acceptedFlags || []).join(', '));
+    }
+  }, [data]);
+
   const [toastMsg, setToastMsg] = useState<string | null>(null);
 
   const showToast = (msg: string) => {
@@ -333,8 +350,12 @@ export default function AdminPage() {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  updateData(data);
-                  showToast('Site Identity updated successfully!');
+                  updateData({
+                    ...data,
+                    branding: identityForm,
+                    stats: statsForm
+                  });
+                  showToast('Site Identity & Statistics updated successfully!');
                 }}
               >
                 <div className="admin-field">
@@ -342,8 +363,8 @@ export default function AdminPage() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={b.siteName}
-                    onChange={(e) => updateData({ ...data, branding: { ...b, siteName: e.target.value } })}
+                    value={identityForm?.siteName || ''}
+                    onChange={(e) => setIdentityForm({ ...identityForm, siteName: e.target.value })}
                   />
                 </div>
                 <div className="admin-field">
@@ -351,8 +372,8 @@ export default function AdminPage() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={b.orgName}
-                    onChange={(e) => updateData({ ...data, branding: { ...b, orgName: e.target.value } })}
+                    value={identityForm?.orgName || ''}
+                    onChange={(e) => setIdentityForm({ ...identityForm, orgName: e.target.value })}
                   />
                 </div>
                 <div className="admin-field">
@@ -360,8 +381,8 @@ export default function AdminPage() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={b.tagline}
-                    onChange={(e) => updateData({ ...data, branding: { ...b, tagline: e.target.value } })}
+                    value={identityForm?.tagline || ''}
+                    onChange={(e) => setIdentityForm({ ...identityForm, tagline: e.target.value })}
                   />
                 </div>
                 <div className="admin-field">
@@ -369,8 +390,8 @@ export default function AdminPage() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={b.subtitle}
-                    onChange={(e) => updateData({ ...data, branding: { ...b, subtitle: e.target.value } })}
+                    value={identityForm?.subtitle || ''}
+                    onChange={(e) => setIdentityForm({ ...identityForm, subtitle: e.target.value })}
                   />
                 </div>
                 <div className="admin-field">
@@ -378,8 +399,8 @@ export default function AdminPage() {
                   <textarea
                     rows={4}
                     className="admin-input"
-                    value={b.description}
-                    onChange={(e) => updateData({ ...data, branding: { ...b, description: e.target.value } })}
+                    value={identityForm?.description || ''}
+                    onChange={(e) => setIdentityForm({ ...identityForm, description: e.target.value })}
                   />
                 </div>
                 <div className="admin-field">
@@ -387,8 +408,8 @@ export default function AdminPage() {
                   <input
                     type="url"
                     className="admin-input"
-                    value={b.whatsappJoinUrl}
-                    onChange={(e) => updateData({ ...data, branding: { ...b, whatsappJoinUrl: e.target.value } })}
+                    value={identityForm?.whatsappJoinUrl || ''}
+                    onChange={(e) => setIdentityForm({ ...identityForm, whatsappJoinUrl: e.target.value })}
                   />
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14 }}>
@@ -397,8 +418,8 @@ export default function AdminPage() {
                     <input
                       type="text"
                       className="admin-input"
-                      value={b.defenseStatus}
-                      onChange={(e) => updateData({ ...data, branding: { ...b, defenseStatus: e.target.value } })}
+                      value={identityForm?.defenseStatus || ''}
+                      onChange={(e) => setIdentityForm({ ...identityForm, defenseStatus: e.target.value })}
                     />
                   </div>
                   <div className="admin-field">
@@ -406,8 +427,8 @@ export default function AdminPage() {
                     <input
                       type="text"
                       className="admin-input"
-                      value={b.activeNodes}
-                      onChange={(e) => updateData({ ...data, branding: { ...b, activeNodes: e.target.value } })}
+                      value={identityForm?.activeNodes || ''}
+                      onChange={(e) => setIdentityForm({ ...identityForm, activeNodes: e.target.value })}
                     />
                   </div>
                   <div className="admin-field">
@@ -415,14 +436,59 @@ export default function AdminPage() {
                     <input
                       type="text"
                       className="admin-input"
-                      value={b.campusSubnet}
-                      onChange={(e) => updateData({ ...data, branding: { ...b, campusSubnet: e.target.value } })}
+                      value={identityForm?.campusSubnet || ''}
+                      onChange={(e) => setIdentityForm({ ...identityForm, campusSubnet: e.target.value })}
                     />
                   </div>
                 </div>
 
-                <button type="submit" className="admin-btn admin-btn-primary" style={{ marginTop: 14 }}>
-                  Save Identity Changes
+                {/* Homepage Statistics & Telemetry Counters */}
+                <div style={{ marginTop: 26, paddingTop: 20, borderTop: '1px solid var(--admin-border)' }}>
+                  <h3 style={{ fontSize: '1.08rem', marginBottom: 14, color: 'var(--neon-green)', letterSpacing: '0.04em' }}>
+                    📊 Homepage Statistics &amp; Counters
+                  </h3>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14 }}>
+                    <div className="admin-field">
+                      <label>Active Operatives Count</label>
+                      <input
+                        type="number"
+                        className="admin-input"
+                        value={statsForm?.members ?? 450}
+                        onChange={(e) => setStatsForm({ ...statsForm, members: parseInt(e.target.value) || 0 })}
+                      />
+                    </div>
+                    <div className="admin-field">
+                      <label>CTF Challenges Solved</label>
+                      <input
+                        type="number"
+                        className="admin-input"
+                        value={statsForm?.ctfChallenges ?? 65}
+                        onChange={(e) => setStatsForm({ ...statsForm, ctfChallenges: parseInt(e.target.value) || 0 })}
+                      />
+                    </div>
+                    <div className="admin-field">
+                      <label>Hands-on Workshops</label>
+                      <input
+                        type="number"
+                        className="admin-input"
+                        value={statsForm?.workshops ?? 40}
+                        onChange={(e) => setStatsForm({ ...statsForm, workshops: parseInt(e.target.value) || 0 })}
+                      />
+                    </div>
+                    <div className="admin-field">
+                      <label>Operations Conducted</label>
+                      <input
+                        type="number"
+                        className="admin-input"
+                        value={statsForm?.eventsConducted ?? 20}
+                        onChange={(e) => setStatsForm({ ...statsForm, eventsConducted: parseInt(e.target.value) || 0 })}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" className="admin-btn admin-btn-primary" style={{ marginTop: 20 }}>
+                  Save Identity &amp; Stats Changes
                 </button>
               </form>
             </div>
@@ -668,6 +734,7 @@ export default function AdminPage() {
                       tags: [],
                       icon: 'terminal'
                     });
+                    setRawDomainTags('');
                     setDomainModalOpen(true);
                   }}
                 >
@@ -686,6 +753,7 @@ export default function AdminPage() {
                           className="action-btn edit"
                           onClick={() => {
                             setEditingDomain({ ...dm });
+                            setRawDomainTags((dm.tags || []).join(', '));
                             setDomainModalOpen(true);
                           }}
                         >
@@ -725,7 +793,18 @@ export default function AdminPage() {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  updateData(data);
+                  const parsedFlags = rawAcceptedFlags
+                    .split(',')
+                    .map((s) => s.trim())
+                    .filter(Boolean);
+                  const updatedCtf = {
+                    ...ctfForm,
+                    miniChallenge: {
+                      ...ctfForm.miniChallenge,
+                      acceptedFlags: parsedFlags
+                    }
+                  };
+                  updateData({ ...data, ctfConfig: updatedCtf });
                   showToast('CTF configuration saved!');
                 }}
               >
@@ -734,8 +813,8 @@ export default function AdminPage() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={data.ctfConfig.headline}
-                    onChange={(e) => updateData({ ...data, ctfConfig: { ...data.ctfConfig, headline: e.target.value } })}
+                    value={ctfForm?.headline || ''}
+                    onChange={(e) => setCtfForm({ ...ctfForm, headline: e.target.value })}
                   />
                 </div>
                 <div className="admin-field">
@@ -743,8 +822,8 @@ export default function AdminPage() {
                   <textarea
                     rows={3}
                     className="admin-input"
-                    value={data.ctfConfig.tagline}
-                    onChange={(e) => updateData({ ...data, ctfConfig: { ...data.ctfConfig, tagline: e.target.value } })}
+                    value={ctfForm?.tagline || ''}
+                    onChange={(e) => setCtfForm({ ...ctfForm, tagline: e.target.value })}
                   />
                 </div>
                 <div className="admin-field">
@@ -752,14 +831,11 @@ export default function AdminPage() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={data.ctfConfig.miniChallenge.title}
+                    value={ctfForm?.miniChallenge?.title || ''}
                     onChange={(e) =>
-                      updateData({
-                        ...data,
-                        ctfConfig: {
-                          ...data.ctfConfig,
-                          miniChallenge: { ...data.ctfConfig.miniChallenge, title: e.target.value }
-                        }
+                      setCtfForm({
+                        ...ctfForm,
+                        miniChallenge: { ...ctfForm.miniChallenge, title: e.target.value }
                       })
                     }
                   />
@@ -769,14 +845,11 @@ export default function AdminPage() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={data.ctfConfig.miniChallenge.payload}
+                    value={ctfForm?.miniChallenge?.payload || ''}
                     onChange={(e) =>
-                      updateData({
-                        ...data,
-                        ctfConfig: {
-                          ...data.ctfConfig,
-                          miniChallenge: { ...data.ctfConfig.miniChallenge, payload: e.target.value }
-                        }
+                      setCtfForm({
+                        ...ctfForm,
+                        miniChallenge: { ...ctfForm.miniChallenge, payload: e.target.value }
                       })
                     }
                   />
@@ -786,14 +859,11 @@ export default function AdminPage() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={data.ctfConfig.miniChallenge.hint}
+                    value={ctfForm?.miniChallenge?.hint || ''}
                     onChange={(e) =>
-                      updateData({
-                        ...data,
-                        ctfConfig: {
-                          ...data.ctfConfig,
-                          miniChallenge: { ...data.ctfConfig.miniChallenge, hint: e.target.value }
-                        }
+                      setCtfForm({
+                        ...ctfForm,
+                        miniChallenge: { ...ctfForm.miniChallenge, hint: e.target.value }
                       })
                     }
                   />
@@ -803,19 +873,9 @@ export default function AdminPage() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={(data.ctfConfig.miniChallenge.acceptedFlags || []).join(', ')}
-                    onChange={(e) =>
-                      updateData({
-                        ...data,
-                        ctfConfig: {
-                          ...data.ctfConfig,
-                          miniChallenge: {
-                            ...data.ctfConfig.miniChallenge,
-                            acceptedFlags: e.target.value.split(',').map((s) => s.trim()).filter(Boolean)
-                          }
-                        }
-                      })
-                    }
+                    value={rawAcceptedFlags}
+                    onChange={(e) => setRawAcceptedFlags(e.target.value)}
+                    placeholder="e.g. CUJ{flag_one}, CUJ{flag_two}"
                   />
                 </div>
 
@@ -1461,10 +1521,14 @@ export default function AdminPage() {
                 const existing = data.domains || [];
                 const idx = existing.findIndex((d) => d.id === editingDomain.id);
                 let updated = [...existing];
+                const parsedDomain = {
+                  ...editingDomain,
+                  tags: rawDomainTags.split(',').map((s) => s.trim()).filter(Boolean)
+                };
                 if (idx >= 0) {
-                  updated[idx] = editingDomain;
+                  updated[idx] = parsedDomain;
                 } else {
-                  updated.unshift(editingDomain);
+                  updated.unshift(parsedDomain);
                 }
                 updateData({ ...data, domains: updated });
                 setDomainModalOpen(false);
@@ -1492,6 +1556,35 @@ export default function AdminPage() {
                   />
                 </div>
               </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                <div className="admin-field">
+                  <label>Icon Style</label>
+                  <select
+                    className="admin-input"
+                    value={editingDomain.icon || 'terminal'}
+                    onChange={(e) => setEditingDomain({ ...editingDomain, icon: e.target.value })}
+                  >
+                    <option value="terminal">💻 Terminal (Default)</option>
+                    <option value="crosshair">🎯 Crosshair (Pen Testing)</option>
+                    <option value="flag">🚩 Flag (CTF)</option>
+                    <option value="search">🔍 Search (Forensics &amp; IR)</option>
+                    <option value="globe">🌐 Globe (Web App Security)</option>
+                    <option value="server">🖥️ Server (Network Security)</option>
+                    <option value="lock">🔒 Lock (Cryptography)</option>
+                    <option value="eye">👁️ Eye (OSINT)</option>
+                  </select>
+                </div>
+                <div className="admin-field">
+                  <label>Tags (comma separated)</label>
+                  <input
+                    type="text"
+                    className="admin-input"
+                    value={rawDomainTags}
+                    onChange={(e) => setRawDomainTags(e.target.value)}
+                    placeholder="e.g. Nmap, Nessus, OWASP"
+                  />
+                </div>
+              </div>
               <div className="admin-field">
                 <label>Description</label>
                 <textarea
@@ -1499,20 +1592,6 @@ export default function AdminPage() {
                   className="admin-input"
                   value={editingDomain.desc}
                   onChange={(e) => setEditingDomain({ ...editingDomain, desc: e.target.value })}
-                />
-              </div>
-              <div className="admin-field">
-                <label>Tags (comma separated)</label>
-                <input
-                  type="text"
-                  className="admin-input"
-                  value={(editingDomain.tags || []).join(', ')}
-                  onChange={(e) =>
-                    setEditingDomain({
-                      ...editingDomain,
-                      tags: e.target.value.split(',').map((s) => s.trim()).filter(Boolean)
-                    })
-                  }
                 />
               </div>
               <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 10, marginTop: 16 }}>

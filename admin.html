@@ -212,9 +212,13 @@
             <span>Full View Preview</span>
           </button>
 
-          <a href="index.html" target="_blank" class="admin-btn admin-btn-outline" title="Open public website in new tab">
+          <a href="http://localhost:3000" target="_blank" class="admin-btn admin-btn-primary" title="Open Next.js site on port 3000" style="padding: 6px 14px; font-size: 0.78rem;">
+            <span>Next.js Site (3000) ↗</span>
+          </a>
+
+          <a href="index.html" target="_blank" class="admin-btn admin-btn-outline" title="Open static website in new tab">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <span>Live Site &rarr;</span>
+            <span>Static Site &rarr;</span>
           </a>
 
           <button id="export-backup-quick" class="admin-btn admin-btn-outline" title="Download site data JSON backup">
@@ -223,6 +227,18 @@
           </button>
         </div>
       </header>
+
+      <!-- Next.js Migration Notice Banner -->
+      <div style="background: rgba(0, 229, 255, 0.08); border-bottom: 1px solid var(--neon-cyan); padding: 10px 24px; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 0.82rem; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <span style="color: var(--neon-cyan); font-weight: bold;">[NEXT.JS ACTIVE]</span>
+          <span style="color: var(--text-secondary); margin-left: 8px;">For full real-time sync with Next.js App Router, access admin at:</span>
+          <a href="http://localhost:3000/admin" target="_blank" style="color: var(--neon-green); text-decoration: underline; font-weight: bold; margin-left: 6px;">http://localhost:3000/admin</a>
+        </div>
+        <a href="http://localhost:3000" target="_blank" class="admin-btn admin-btn-primary" style="padding: 4px 12px; font-size: 0.74rem;">
+          Open Next.js Site (Port 3000) ↗
+        </a>
+      </div>
 
       <!-- Content Views -->
       <div class="admin-content">

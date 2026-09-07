@@ -698,20 +698,45 @@ export function useSiteData() {
   const [mounted, setMounted] = useState<boolean>(false);
 
   const refresh = useCallback(() => {
-    setData(SiteDataStorage.get());
+    if (typeof window !== 'undefined') {
+      const freshData = SiteDataStorage.get();
+      setData(freshData);
+    }
   }, []);
 
   useEffect(() => {
     setMounted(true);
     refresh();
 
-    const handleUpdate = () => refresh();
+    const handleUpdate = () => {
+      refresh();
+    };
+
+    // 1. Same-window / intra-app updates
     window.addEventListener('siteDataUpdated', handleUpdate);
-    window.addEventListener('storage', handleUpdate);
+
+    // 2. Cross-tab storage updates
+    const handleStorage = (e: StorageEvent) => {
+      if (!e.key || e.key === STORAGE_KEY) {
+        handleUpdate();
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+
+    // 3. Tab focus & visibility change (when switching back to the tab)
+    window.addEventListener('focus', handleUpdate);
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        handleUpdate();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
       window.removeEventListener('siteDataUpdated', handleUpdate);
-      window.removeEventListener('storage', handleUpdate);
+      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener('focus', handleUpdate);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, [refresh]);
 
