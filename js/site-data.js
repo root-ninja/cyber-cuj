@@ -352,36 +352,7 @@ const DEFAULT_SITE_DATA = {
     }
   ],
 
-  achievements: [
-    {
-      id: 'ach-1',
-      year: '2025 // TOURNAMENT',
-      icon: 'trophy',
-      title: 'Top 10 National CTF Finishes',
-      desc: 'CYBER CUJ team secured Rank #7 out of 340+ university teams across India in the National Inter-University Cyber Challenge.'
-    },
-    {
-      id: 'ach-2',
-      year: '2025 // STATE RECOGNITION',
-      icon: 'shield',
-      title: 'Special Commendation: State Cyber Cell',
-      desc: 'Recognized by Jammu & Kashmir Cyber Police for student-led digital safety outreach, educating 2,000+ citizens against phishing and UPI fraud.'
-    },
-    {
-      id: 'ach-3',
-      year: '2024–2025 // CERTIFICATIONS',
-      icon: 'cert',
-      title: '15+ Professional Certifications',
-      desc: 'Active club members successfully certified in CompTIA Security+, Certified Ethical Hacker (CEH), eJPT, and OSCP through club mentorship cohorts.'
-    },
-    {
-      id: 'ach-4',
-      year: '2024 // HACKATHON',
-      icon: 'star',
-      title: '1st Place: Northern Hack-Defense 2024',
-      desc: 'Designed an open-source real-time DNS exfiltration detection agent, awarded 1st place and Best Innovation Trophy at Northern Regional Tech Fest.'
-    }
-  ],
+  achievements: [],
 
   applications: [
     {
@@ -434,6 +405,18 @@ window.SiteData = {
           mutated = true;
         }
       });
+
+      if (Array.isArray(data.achievements)) {
+        const hasMockAchievements = data.achievements.some(a =>
+          ['ach-1', 'ach-2', 'ach-3', 'ach-4'].includes(a.id)
+        );
+        if (hasMockAchievements) {
+          data.achievements = data.achievements.filter(a =>
+            !['ach-1', 'ach-2', 'ach-3', 'ach-4'].includes(a.id)
+          );
+          mutated = true;
+        }
+      }
 
       if (!data.branding || typeof data.branding !== 'object') {
         data.branding = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.branding));

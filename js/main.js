@@ -259,8 +259,11 @@ function hydrateFromSiteData() {
       `).join('');
     } else {
       achieveGrid.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 40px; font-family: var(--font-mono);">
-          [!] No achievements currently published. Check back soon!
+        <div style="grid-column: 1 / -1; text-align: center; padding: 44px 24px; border: 1px dashed rgba(0, 229, 255, 0.3); border-radius: var(--radius-md); background: linear-gradient(180deg, rgba(0, 229, 255, 0.04) 0%, rgba(5, 8, 17, 0.7) 100%); font-family: var(--font-mono); max-width: 680px; margin: 0 auto; width: 100%;">
+          <div style="color: var(--accent-cyan); font-size: 1.8rem; margin-bottom: 12px;">⚡</div>
+          <div style="color: #fff; font-size: 1.05rem; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 8px;">[ SYSTEM NOTICE // HALL OF FAME ]</div>
+          <div style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">Club achievements and competition accolades are currently being updated for 2026.</div>
+          <div style="color: var(--accent-cyan); font-size: 0.78rem; margin-top: 12px; opacity: 0.85;">// VERIFIED CREDENTIALS WILL BE LOGGED HERE SOON</div>
         </div>
       `;
     }
