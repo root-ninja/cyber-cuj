@@ -970,13 +970,8 @@ export default function HomePage() {
           </div>
 
           {/* Footer Bottom Strip */}
-          <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
+          <div className="footer-bottom">
             <div>&copy; 2026 {siteName} — {b.orgName}. All rights reserved.</div>
-            <div>
-              <a href="/admin" style={{ color: 'var(--text-muted)', fontSize: '0.74rem', textDecoration: 'none', fontFamily: 'var(--font-mono)' }} title="Restricted SOC Access">
-                [SOC Admin Portal]
-              </a>
-            </div>
           </div>
         </div>
       </footer>

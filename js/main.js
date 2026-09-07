@@ -559,7 +559,6 @@ function initTerminal() {
         - <strong>flag</strong>      : Clue to the mini CTF flag<br>
         - <strong>whoami</strong>    : Display current session operative info<br>
         - <strong>cuj</strong>       : Central University of Jammu info<br>
-        - <strong>admin</strong>     : Launch Administrator Portal<br>
         - <strong>matrix</strong>    : Simulated cyber stream<br>
         - <strong>clear</strong>     : Wipe terminal buffer
       </div>`,
@@ -626,16 +625,6 @@ function initTerminal() {
         Campus: Rahya-Suchani (Bagla), Samba District, Jammu & Kashmir.<br>
         Department: Computer Science & Information Technology.
       </div>`,
-
-    admin: () => {
-      setTimeout(() => { window.location.href = 'admin.html'; }, 800);
-      return `
-        <div class="terminal-output success">
-          [+] ROOT PRIVILEGES DETECTED<br>
-          Opening Administrator Operations Center...<br>
-          Direct link: <a href="admin.html" style="color: var(--neon-cyan); text-decoration: underline;">Launch Admin Console &rarr;</a>
-        </div>`;
-    },
 
     matrix: () => `
       <div class="terminal-output" style="color: #00ff9d; font-size: 0.76rem;">

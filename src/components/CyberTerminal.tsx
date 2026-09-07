@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { getCyberAudio } from '@/lib/audio';
 
 interface TerminalEntry {
@@ -10,7 +9,6 @@ interface TerminalEntry {
 }
 
 export default function CyberTerminal() {
-  const router = useRouter();
   const [history, setHistory] = useState<TerminalEntry[]>([
     { type: 'prompt', content: 'system:~$ Initializing CYBER CUJ Security Matrix v4.2...' },
     { type: 'prompt', content: 'system:~$ Connected to Central University of Jammu Secured Gateway [TLS 1.3].' },
@@ -45,7 +43,7 @@ export default function CyberTerminal() {
         audio.playBlip(650, 0.05);
         newEntries.push({
           type: 'highlight',
-          content: 'AVAILABLE SYSTEM MODULES:\n  about     - Dossier on CYBER CUJ\n  events    - Upcoming operations & CTFs\n  domains   - Technical specialization tracks\n  ctf       - Jump to CTF mini-challenge\n  team      - Faculty advisory & student operatives\n  join      - Recruitment protocol\n  admin     - Launch Administrator Control Center\n  clear     - Wipe display buffer\n  whoami    - Display session privileges'
+          content: 'AVAILABLE SYSTEM MODULES:\n  about     - Dossier on CYBER CUJ\n  events    - Upcoming operations & CTFs\n  domains   - Technical specialization tracks\n  ctf       - Jump to CTF mini-challenge\n  team      - Faculty advisory & student operatives\n  join      - Recruitment protocol\n  clear     - Wipe display buffer\n  whoami    - Display session privileges'
         });
         break;
 
@@ -99,17 +97,6 @@ export default function CyberTerminal() {
         });
         const joinSection = document.getElementById('join');
         if (joinSection) joinSection.scrollIntoView({ behavior: 'smooth' });
-        break;
-
-      case 'admin':
-        audio.playSuccess();
-        newEntries.push({
-          type: 'success',
-          content: '[AUTH] Redirecting to Administrator Operations Center...'
-        });
-        setTimeout(() => {
-          router.push('/admin');
-        }, 600);
         break;
 
       case 'clear':
@@ -202,7 +189,7 @@ export default function CyberTerminal() {
               type="text"
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
-              placeholder="type command (e.g. help, admin, ctf)..."
+              placeholder="type command (e.g. help, ctf, events)..."
               autoComplete="off"
               spellCheck="false"
               aria-label="Terminal command line"
