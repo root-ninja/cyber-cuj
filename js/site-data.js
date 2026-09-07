@@ -117,83 +117,19 @@ const DEFAULT_SITE_DATA = {
 
   events: [
     {
-      id: 'cuj-ctf-2025',
-      title: 'CUJ Cyber Sentinel CTF 2025',
+      id: 'HackCyros 4.0',
+      title: 'CUJ Cyber Sentinel CTF 2026',
       type: 'ctf',
       status: 'Upcoming',
-      date: 'October 14–16, 2025',
+      date: 'September 15–16',
       venue: 'Online & Campus Lab 3',
       time: '48-Hour Continuous Marathon',
       description: 'Our flagship 48-hour Jeopardy-style Capture The Flag event featuring custom challenges in Web exploitation, Cryptography, Reverse Engineering, Forensics, and OSINT.',
       speakers: 'Organized by CYBER CUJ Red Team & Technical Leads',
       prerequisites: 'Open to all university students across India. Teams of 1–4 members.',
       agenda: 'Kickoff & Keynote: Day 1 10:00 AM | Mid-way Hint Releases: Day 2 12:00 PM | Flag freeze & Prize distribution: Day 3 4:00 PM.'
-    },
-    {
-      id: 'zeroday-workshop',
-      title: 'Zero-Day Discovery & Binary Exploitation',
-      type: 'workshop',
-      status: 'Upcoming',
-      date: 'November 05, 2025',
-      venue: 'Seminar Hall B & Live Stream',
-      time: '02:00 PM – 05:30 PM IST',
-      description: 'Deep dive into memory corruption, buffer overflows, ROP chains, and debugging binaries with GDB and Ghidra.',
-      speakers: 'Dr. Faculty Advisor & External Security Researcher (CERT-In certified)',
-      prerequisites: 'Basic knowledge of C/Assembly and Linux terminal.',
-      agenda: 'Stack layout inspection, exploitation demos, hands-on lab sandbox challenges, live Q&A.'
-    },
-    {
-      id: 'cyber-awareness-jk',
-      title: 'Cyber Aware J&K: Campus Security Campaign',
-      type: 'awareness',
-      status: 'Upcoming',
-      date: 'November 22, 2025',
-      venue: 'CUJ Main Auditorium',
-      time: '11:00 AM – 03:00 PM IST',
-      description: 'University-wide awareness initiative addressing social engineering, phishing, UPI fraud prevention, device hardening, and personal digital hygiene.',
-      speakers: 'Cyber Cell Officers (J&K Police) & CYBER CUJ Mentors',
-      prerequisites: 'Open to all faculties, staff, and students of Central University of Jammu.',
-      agenda: 'Live phishing demonstration, real-world case studies in Jammu & Kashmir, interactive defense quiz.'
-    },
-    {
-      id: 'osint-masterclass',
-      title: 'Digital Footprints & OSINT Investigation',
-      type: 'seminar',
-      status: 'Upcoming',
-      date: 'December 08, 2025',
-      venue: 'Virtual Room / Discord Stage',
-      time: '06:00 PM – 08:00 PM IST',
-      description: 'Mastering open-source intelligence gathering, geolocation reconnaissance, metadata extraction, and footprint mitigation.',
-      speakers: 'Invited Threat Intel Analyst',
-      prerequisites: 'A modern web browser and OSINT toolset (SpiderFoot, Recon-ng, Maltego).',
-      agenda: 'Image geolocation exercises, username pivots, breach dataset analysis, legal ethics boundaries.'
-    },
-    {
-      id: 'national-hackathon-past',
-      title: 'Inter-University Defensive Hackathon 2025',
-      type: 'ctf',
-      status: 'Completed',
-      date: 'August 18–19, 2025',
-      venue: 'Campus Cyber Lab 1',
-      time: '24-Hour Hackathon',
-      description: 'Students built automated incident response scripts, SOC monitoring pipelines, and honey pots under simulated APT attack scenarios.',
-      speakers: 'Mentored by Industry SOC Leads',
-      prerequisites: 'Completed event with 120+ student participants.',
-      agenda: 'Full attack simulations, detection engineering sprints, final prototype evaluations.'
-    },
-    {
-      id: 'websec-bootcamp-past',
-      title: 'OWASP Top 10 Hands-On Bootcamp',
-      type: 'workshop',
-      status: 'Completed',
-      date: 'July 10, 2025',
-      venue: 'Online Hands-on Lab',
-      time: '04:00 PM – 07:00 PM IST',
-      description: 'Practical exploration of SQLi, SSRF, IDOR, and Broken Access Control using PortSwigger Web Security Academy labs.',
-      speakers: 'CYBER CUJ Web Security Domain Leads',
-      prerequisites: 'Archived session notes available in club repository.',
-      agenda: 'Hands-on exploitation exercises, secure coding remediation patterns, lab solution walk-throughs.'
     }
+
   ],
 
   team: [
@@ -235,33 +171,8 @@ const DEFAULT_SITE_DATA = {
       website: '',
       github: 'https://github.com',
       twitter: 'https://twitter.com'
-    },
-    {
-      id: 'lead-3',
-      category: 'student',
-      name: 'Web Sec & Cryptography Lead',
-      role: 'Bug Bounty Hunter & Cryptanalyst',
-      spec: '3rd Year IT. Active bug bounty hunter with Hall of Fame listings in major web assets, focusing on modern OAuth, JWT, and SSRF flaws.',
-      avatar: '',
-      email: 'websec@cuj.ac.in',
-      linkedin: 'https://linkedin.com',
-      website: '',
-      github: 'https://github.com',
-      twitter: 'https://twitter.com'
-    },
-    {
-      id: 'lead-4',
-      category: 'student',
-      name: 'Outreach & Events Lead',
-      role: 'Community Manager & OSINT Lead',
-      spec: '2nd Year CSE. Coordinates inter-college partnerships, state cyber awareness workshops, and spearheads open-source intelligence research.',
-      avatar: '',
-      email: 'outreach@cuj.ac.in',
-      linkedin: 'https://linkedin.com',
-      website: '',
-      github: 'https://github.com',
-      twitter: 'https://twitter.com'
     }
+
   ],
 
   ctfConfig: {
