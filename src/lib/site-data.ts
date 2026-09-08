@@ -300,7 +300,7 @@ export const DEFAULT_SITE_DATA: SiteData = {
       title: 'Hackcyros 3.0',
       type: 'ctf',
       status: 'Closed',
-      date: 'November 2026',
+      date: 'Aug 2026',
       venue: 'Online & Campus Lab 3',
       time: '12-Hour CTF',
       description: 'The third edition of Hackcyros featuring advanced dual-track operations: Network Pivoting, Active Directory Exploitation, and Applied Cryptography puzzles.',
